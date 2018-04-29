@@ -25,6 +25,7 @@ public class ClassSchedule extends AppCompatActivity {
     ArrayAdapter adapter;
     ListView lv;
     Schedule db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -15,6 +15,7 @@ public class NewsFeeds extends AppCompatActivity {
     EditText txtDate, txtNews, txtOwner, txtTime;
     NewsDB db;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

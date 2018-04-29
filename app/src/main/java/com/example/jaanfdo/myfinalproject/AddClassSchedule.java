@@ -37,6 +37,7 @@ public class AddClassSchedule extends AppCompatActivity {
     ArrayList<String> name =  new ArrayList<>();
     Schedule db;
 
+
     //get list data
     int rowId;
     Cursor c;

@@ -31,6 +31,7 @@ public class AddEvents extends AppCompatActivity {
     Spinner CourseSpinner;
     ArrayList<String> name =  new ArrayList<>();
     EventsDB db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

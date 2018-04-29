@@ -110,6 +110,7 @@ public class MainForm extends AppCompatActivity implements NavigationView.OnNavi
         return super.onOptionsItemSelected(item);
     }
 
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

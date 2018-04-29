@@ -18,6 +18,7 @@ public class SignUp extends AppCompatActivity {
     SignUpDB db;
     EditText UserName, Password, Email, UniCode;
     Button signup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

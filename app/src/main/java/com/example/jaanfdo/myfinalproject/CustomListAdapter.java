@@ -23,6 +23,7 @@ public class CustomListAdapter extends BaseAdapter {
     TextView reporterNameView;
     TextView reportedDateView;
 
+
     public CustomListAdapter(Context aContext, ArrayList<EventsBL> listData) {
         this.listData = listData;
         layoutInflater = LayoutInflater.from(aContext);

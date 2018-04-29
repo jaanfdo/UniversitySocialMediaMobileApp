@@ -21,6 +21,7 @@ public class TeacherAppointment extends AppCompatActivity {
     ArrayAdapter adapter;
     ListView lv;
     Appointment db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

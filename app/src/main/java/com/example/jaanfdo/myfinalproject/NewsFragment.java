@@ -11,6 +11,7 @@ import android.view.ViewGroup;
  * Created by jaanfdo on 3/11/2017.
  */
 
+
 public class NewsFragment extends Fragment {
 
     @Nullable

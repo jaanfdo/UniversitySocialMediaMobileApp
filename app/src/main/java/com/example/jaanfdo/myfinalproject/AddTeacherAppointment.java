@@ -27,6 +27,7 @@ public class AddTeacherAppointment extends AppCompatActivity {
     Spinner CourseSpinner;
     TextView AppointmentID;
     Appointment db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
