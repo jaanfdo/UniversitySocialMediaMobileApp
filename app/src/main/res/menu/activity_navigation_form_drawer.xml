@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/news"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="News Feeds" />
+        <item
+            android:id="@+id/event"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Events" />
+        <item
+            android:id="@+id/classschedule"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Class Schedule" />
+        <item
+            android:id="@+id/teacherschedule"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Teachers Schedule" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/expandablelist"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Expandable List" />
+        <item
+            android:id="@+id/filterlist"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Filter List" />
+        <item
+            android:id="@+id/spinnersearch"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Spinner Search" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/alertdialog"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Alert Dialog" />
+        <item
+            android:id="@+id/tableview"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Table View" />
+        <item
+            android:id="@+id/dynamicviews"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Dynamic Views" />
+    </group>
+</menu>

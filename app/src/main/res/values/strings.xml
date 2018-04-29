@@ -1,0 +1,85 @@
+<resources>
+    <string name="app_name">My Final Project</string>
+    <string name="title_activity_navigation_form">School Information Sharing System</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string-array name="Courses">
+        <item>BEng (Hons) in SE</item>
+        <item>Bsc (Hons) in CS</item>
+        <item>BEng (Hons) in NE</item>
+    </string-array>
+
+    <string-array name="Planets">
+        <item>Sun</item>
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="dept_array">
+        <item>Vegetable</item>
+        <item>Fruits</item>
+        <item>Grocery</item>
+        <item>Electronics</item>
+        <item>Books</item>
+        <item>Language</item>
+    </string-array>
+
+    <string-array name="types">
+        <item>Mobile</item>
+        <item>Office</item>
+        <item>Home</item>
+    </string-array>
+
+
+    <string-array name="mobile_manufacturers">
+        <item>Select one Item</item>
+        <item>Samsung</item>
+        <item>Foxconn</item>
+        <item>Apple</item>
+        <item>Oppo</item>
+        <item>Nokia</item>
+        <item>LYF</item>
+        <item>Xiaomi</item>
+        <item>Huawei</item>
+        <item>Asus</item>
+        <item>Lenovo</item>
+    </string-array>
+
+
+
+    <string name="date_picker_title">Enter your D.O.B</string>
+    <string name="add_date">Enter your D.O.B(DD/MM/YYYY)</string>
+    <string name="dialog_header">Enter Text</string>
+    <string name="sampletext">Sample Text</string>
+
+
+    <string-array name="dish_array">
+        <item>Pizza</item>
+        <item>Pasta</item>
+        <item>Sandwich</item>
+    </string-array>
+
+    <string name="date_picker_title2">Select Date</string>
+    <string name="cancel">Cancel</string>
+    <string name="dialog_single_button">Isn\'t This Tutorial Great !!</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="dialog_two_button">Are you a professional Android Developer ?</string>
+    <string name="dialog_three_button">Did you subscribe to Android Tutorial Point ?</string>
+    <string name="remind">Remind Me Later</string>
+    <string name="pick_dish">What is  your favourite Dish ?</string>
+    <string name="ok">OK</string>
+    <string name="time_picker_title">Select Time</string>
+</resources>

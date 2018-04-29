@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_class_schedule"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="top"
+    android:background="#262626"
+    tools:context="com.example.jaanfdo.myfinalproject.AddClassSchedule">
+
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="15dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Class Schedule"
+                android:textColor="#a6a6a6"
+                android:textSize="22dp"
+                android:textAlignment="center"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="50dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ID"
+                android:id="@+id/ScheduleID"
+                android:textColor="#a6a6a6"
+                android:textSize="12dp"
+                android:textAlignment="center"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/CourseSpinner"
+                android:background="#404040"
+                android:textSize="18dp"
+                android:padding="25dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Course Name"
+                android:textColorHint="#a6a6a6"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#404040"
+                android:id="@+id/txtSubject"
+                android:textSize="18dp"
+                android:padding="15dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Subject"
+                android:textColorHint="#a6a6a6"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#404040"
+                android:id="@+id/txtDate"
+                android:textSize="18dp"
+                android:padding="15dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Date"
+                android:textColorHint="#a6a6a6"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtTime"
+                android:background="#404040"
+                android:textSize="18dp"
+                android:padding="15dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Time"
+                android:textColorHint="#a6a6a6"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#404040"
+                android:textSize="18dp"
+                android:padding="15dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Lecture Name"
+                android:id="@+id/txtLecName"
+                android:textColorHint="#a6a6a6"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#404040"
+                android:textSize="18dp"
+                android:padding="15dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Class Floor"
+                android:id="@+id/txtClassFloor"
+                android:textColorHint="#a6a6a6"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#404040"
+                android:textSize="18dp"
+                android:padding="15dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Class No"
+                android:id="@+id/txtClassNo"
+                android:textColorHint="#a6a6a6"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#0066ff"
+                android:textSize="18dp"
+                android:padding="15dp"
+                android:layout_marginTop="15dp"
+                android:hint="Add Schedule"
+                android:id="@+id/btnSaveClassSchedule"
+                android:onClick="SaveSchedule"
+                android:textColorHint="#fff"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

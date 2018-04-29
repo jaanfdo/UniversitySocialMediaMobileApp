@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_events"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="top"
+    android:background="#262626"
+    tools:context="com.example.jaanfdo.myfinalproject.AddEvents">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="15dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Events"
+                android:textColor="#a6a6a6"
+                android:textSize="22dp"
+                android:textAlignment="center"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="50dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/EventID"
+                android:textColor="#a6a6a6"
+                android:textSize="12dp"
+                android:textAlignment="center"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#404040"
+                android:id="@+id/txtEventName"
+                android:textSize="18dp"
+                android:padding="15dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Event Name"
+                android:textColorHint="#a6a6a6"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/CourseSpinner"
+                android:background="#404040"
+                android:textSize="18dp"
+                android:padding="25dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Course Name"
+                android:textColorHint="#a6a6a6"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#404040"
+                android:id="@+id/txtDate"
+                android:textSize="18dp"
+                android:padding="15dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Date"
+                android:textColorHint="#a6a6a6"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#404040"
+                android:id="@+id/txtTime"
+                android:textSize="18dp"
+                android:padding="15dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Time"
+                android:textColorHint="#a6a6a6"/>
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#404040"
+                android:id="@+id/txtPlace"
+                android:textSize="18dp"
+                android:padding="15dp"
+                android:layout_marginBottom="10dp"
+                android:hint="Place"
+                android:textColorHint="#a6a6a6"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minLines="4"
+                android:gravity="top|left"
+                android:maxLines="10"
+                android:hint="What's Your Message"
+                android:id="@+id/txtDescription"
+                android:textSize="18dp"
+                android:padding="15dp"
+                android:layout_marginBottom="10dp"
+                android:background="#404040"
+                android:textColorHint="#a6a6a6"
+                android:textColor="#fff"
+                android:scrollbars="vertical"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#0066ff"
+                android:textSize="18dp"
+                android:padding="15dp"
+                android:layout_marginTop="15dp"
+                android:hint="Save"
+                android:id="@+id/btnSaveEvents"
+                android:onClick="Save"
+                android:textColorHint="#fff"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#0066ff"
+                android:textSize="18dp"
+                android:padding="15dp"
+                android:layout_marginTop="15dp"
+                android:hint="Save"
+                android:id="@+id/btnUpdateEvents"
+                android:onClick="Update"
+                android:textColorHint="#fff"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

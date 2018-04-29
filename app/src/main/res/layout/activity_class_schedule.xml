@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_class_schedule"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#262626"
+    tools:context="com.example.jaanfdo.myfinalproject.ClassSchedule">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="top">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Class Schedule"
+            android:background="#0066ff"
+            android:textColor="#fff"
+            android:layout_margin="15dp"
+            android:id="@+id/btnAddClassSchedule"
+            android:onClick="AddSchedule"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Class Schedules"
+            android:textColor="#fff"
+            android:textSize="16dp"
+            android:layout_margin="20dp"
+            android:layout_gravity="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="top">
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/schedulelistview"
+                android:divider="#000" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>
