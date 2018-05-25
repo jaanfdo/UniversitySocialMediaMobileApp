@@ -16,6 +16,7 @@ import android.view.MenuItem;
 
 import com.example.jaanfdo.myfinalproject.AlertDialog.ActivityAlertDialog2;
 import com.example.jaanfdo.myfinalproject.DynamicsViews.DynamicView;
+import com.example.jaanfdo.myfinalproject.ExpandableListView.ExpandableListView;
 import com.example.jaanfdo.myfinalproject.FilterListView.MainActivityFilterListView;
 import com.example.jaanfdo.myfinalproject.SpinnerSearch.SpinnerSearchActivity;
 import com.example.jaanfdo.myfinalproject.TableView.ActivityTableView;
@@ -135,7 +136,7 @@ public class MainForm extends AppCompatActivity implements NavigationView.OnNavi
         }
 
         else if (id == R.id.expandablelist) {
-            Intent intent1 = new Intent(this,ExpandableListActivity.class);
+            Intent intent1 = new Intent(this, ExpandableListView.class);
             startActivity(intent1);
         } else if (id == R.id.filterlist) {
             Intent intent1 = new Intent(this,MainActivityFilterListView.class);
