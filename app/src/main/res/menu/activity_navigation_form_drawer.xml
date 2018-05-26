@@ -18,6 +18,10 @@
             android:id="@+id/teacherschedule"
             android:icon="@drawable/ic_menu_manage"
             android:title="Teachers Schedule" />
+        <item
+            android:id="@+id/bucky"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Bucky Home" />
     </group>
 
     <group android:checkableBehavior="single">

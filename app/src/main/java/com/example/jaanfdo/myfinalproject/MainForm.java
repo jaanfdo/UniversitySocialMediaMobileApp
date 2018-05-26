@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.jaanfdo.myfinalproject.AlertDialog.ActivityAlertDialog2;
+import com.example.jaanfdo.myfinalproject.Buckys.BuckyActivity;
 import com.example.jaanfdo.myfinalproject.DynamicsViews.DynamicView;
 import com.example.jaanfdo.myfinalproject.ExpandableListView.ExpandableListView;
 import com.example.jaanfdo.myfinalproject.FilterListView.MainActivityFilterListView;
@@ -133,6 +134,10 @@ public class MainForm extends AppCompatActivity implements NavigationView.OnNavi
         } else if (id == R.id.teacherschedule) {
             Intent intent1 = new Intent(this,TeacherAppointment.class);
             startActivity(intent1);
+        }
+        else if (id == R.id.bucky){
+            Intent i = new Intent(this, BuckyActivity.class);
+            startActivity(i);
         }
 
         else if (id == R.id.expandablelist) {
