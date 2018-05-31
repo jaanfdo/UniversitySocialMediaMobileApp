@@ -58,7 +58,6 @@
     </string-array>
 
 
-
     <string name="date_picker_title">Enter your D.O.B</string>
     <string name="add_date">Enter your D.O.B(DD/MM/YYYY)</string>
     <string name="dialog_header">Enter Text</string>
@@ -82,4 +81,12 @@
     <string name="pick_dish">What is  your favourite Dish ?</string>
     <string name="ok">OK</string>
     <string name="time_picker_title">Select Time</string>
+
+    <string-array name="teams">
+        <item>Real Madrid</item>
+        <item>Arsenal</item>
+        <item>Barcelona</item>
+        <item>Liverpool</item>
+        <item>Manchester Utd.</item>
+    </string-array>
 </resources>
