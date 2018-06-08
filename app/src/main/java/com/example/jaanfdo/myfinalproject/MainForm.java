@@ -19,6 +19,8 @@ import com.example.jaanfdo.myfinalproject.Buckys.BuckyActivity;
 import com.example.jaanfdo.myfinalproject.DynamicsViews.DynamicView;
 import com.example.jaanfdo.myfinalproject.ExpandableListView.ExpandableListView;
 import com.example.jaanfdo.myfinalproject.FilterListView.MainActivityFilterListView;
+import com.example.jaanfdo.myfinalproject.Notification.NotificationActivity;
+import com.example.jaanfdo.myfinalproject.Search.SearchActivity;
 import com.example.jaanfdo.myfinalproject.SpinnerSearch.SpinnerSearchActivity;
 import com.example.jaanfdo.myfinalproject.TableView.ActivityTableView;
 
@@ -106,6 +108,14 @@ public class MainForm extends AppCompatActivity implements NavigationView.OnNavi
 
         } else if (id == R.id.info) {
             Intent intent1 = new Intent(this,Profile.class);
+            startActivity(intent1);
+        }
+        else if (id == R.id.searchicon) {
+            Intent intent1 = new Intent(this,SearchActivity.class);
+            startActivity(intent1);
+        }
+        else if (id == R.id.notification) {
+            Intent intent1 = new Intent(this,NotificationActivity.class);
             startActivity(intent1);
         }
 
