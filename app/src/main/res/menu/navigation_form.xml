@@ -11,7 +11,8 @@
     <item android:id="@+id/searchicon"
         android:icon="@android:drawable/ic_menu_search"
         android:title="search"
-        app:showAsAction="always"/>
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.SearchView" />
     <item
         android:id="@+id/login"
         android:icon="@drawable/ic_menu_send"

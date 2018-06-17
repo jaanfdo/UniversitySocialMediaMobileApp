@@ -4,6 +4,5 @@
     android:hint="Search..."
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:searchSuggestAuthority="com.example.MySuggestionProvider"
-    android:searchSuggestSelection=" ?">
+    android:searchSuggestAuthority="com.example.MySuggestionProvider" >
 </searchable>
