@@ -29,9 +29,6 @@ public class StudentListAdapter extends ArrayAdapter<Student> {
 
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.studentlayout, parent,false);
-
-
-
         return super.getView(position, convertView, parent);
     }
 }

@@ -23,6 +23,7 @@ import com.example.jaanfdo.myfinalproject.Notification.NotificationActivity;
 import com.example.jaanfdo.myfinalproject.Search.SearchActivity;
 import com.example.jaanfdo.myfinalproject.SpinnerSearch.SpinnerSearchActivity;
 import com.example.jaanfdo.myfinalproject.TableView.ActivityTableView;
+import com.example.jaanfdo.myfinalproject.WebService.StudentActivity;
 
 public class MainForm extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -116,6 +117,10 @@ public class MainForm extends AppCompatActivity implements NavigationView.OnNavi
         }
         else if (id == R.id.notification) {
             Intent intent1 = new Intent(this,NotificationActivity.class);
+            startActivity(intent1);
+        }
+        else if (id == R.id.service) {
+            Intent intent1 = new Intent(this, StudentActivity.class);
             startActivity(intent1);
         }
 

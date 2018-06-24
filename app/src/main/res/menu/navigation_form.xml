@@ -25,4 +25,8 @@
         android:id="@+id/notification"
         android:icon="@drawable/ic_menu_send"
         android:title="Notification" />
+    <item
+        android:id="@+id/service"
+        android:icon="@drawable/ic_menu_send"
+        android:title="Service" />
 </menu>

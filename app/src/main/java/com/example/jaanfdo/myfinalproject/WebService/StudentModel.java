@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 public class StudentModel {
-    private String Base_URL = "http://192.168.1.104/server/student/";
+    private String Base_URL = "http://192.168.1.104/webservice/api/student/";
     private RestTemplate restTemplate = new RestTemplate();
 
 
