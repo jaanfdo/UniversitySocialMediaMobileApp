@@ -7,57 +7,62 @@ import com.example.jaanfdo.myfinalproject.WebRequest.Configuration;
  */
 
 public class BioData extends Configuration {
-    String URL = "http://127.0.0.1/AndroidPHP/server.php";
+    String URL = "http://127.0.0.1:1234/AndroidPHP/server2.php";
 
     String url = "";
     String response = "";
 
-    public String tampilBiodata() {
+    public String viewBiodata() {
         try {
-            url = URL + "?operasi=view";
-            System.out.println("URL Tampil Biodata: " + url);
+            url = URL + "?operation=view";
+            System.out.println("URL view Biodata: " + url);
             response = call(url);
         } catch (Exception e) {
+            System.out.println(e);
         }
         return response;
     }
 
-    public String inserBiodata(String nama, String alamat) {
+    public String inserBiodata(String name, String surname) {
         try {
-            url = URL + "?operasi=insert&nama=" + nama + "&alamat=" + alamat;
+            url = URL + "?operation=insert&name=" + name + "&surname=" + surname;
             System.out.println("URL Insert Biodata : " + url);
             response = call(url);
         } catch (Exception e) {
+            System.out.println(e);
         }
         return response;
     }
 
     public String getBiodataById(int id) {
         try {
-            url = URL + "?operasi=get_biodata_by_id&id=" + id;
-            System.out.println("URL Insert Biodata : " + url);
+            url = URL + "?operation=get_biodata_by_id&id=" + id;
+            System.out.println("URL Biodata ID : " + url);
             response = call(url);
         } catch (Exception e) {
+            System.out.println(e);
         }
         return response;
     }
 
-    public String updateBiodata(String id, String nama, String alamat) {
+    public String updateBiodata(String id, String name, String surname) {
         try {
-            url = URL + "?operasi=update&id=" + id + "&nama=" + nama + "&alamat=" + alamat;
-            System.out.println("URL Insert Biodata : " + url);
+            url = URL + "?operation=update&id=" + id + "&name=" + name + "&surname=" + surname;
+            System.out.println("URL Update Biodata : " + url);
             response = call(url);
         } catch (Exception e) {
+            System.out.println(e);
         }
         return response;
     }
 
     public String deleteBiodata(int id) {
         try {
-            url = URL + "?operasi=delete&id=" + id;
-            System.out.println("URL Insert Biodata : " + url);
+            url = URL + "?operation=delete&id=" + id;
+            System.out.println("URL Delete Biodata : " + url);
             response = call(url);
         } catch (Exception e) {
+            System.out.println(e);
         }
         return response;
     }

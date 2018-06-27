@@ -25,13 +25,12 @@ public class NewsDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("Create table" +TABLE_NAME+ "" +
-                "(id Text primary key autoincrement, news text not null, date DateTime not null,time Time not null, owner Text not null)");
+        sqLiteDatabase.execSQL(String.format("Create table(id Text primary key autoincrement, news text not null, date DateTime not null,time Time not null, owner Text not null)", TABLE_NAME));
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP_TABLE_IF_EXISTS" + TABLE_NAME);
+        sqLiteDatabase.execSQL(String.format("DROP_TABLE_IF_EXISTS", TABLE_NAME));
         onCreate(sqLiteDatabase);
     }
 

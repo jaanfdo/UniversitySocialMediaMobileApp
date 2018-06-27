@@ -17,7 +17,7 @@ import android.widget.ExpandableListView.OnGroupClickListener;
 
 import com.example.jaanfdo.myfinalproject.R;
 
-public class ExpandableListView extends AppCompatActivity implements OnClickListener {
+public class ExpandableListViewActivity extends AppCompatActivity implements OnClickListener {
 
     private LinkedHashMap<String, HeaderInfo> mySection = new LinkedHashMap<>();
     private ArrayList<HeaderInfo> SectionList = new ArrayList<>();
@@ -42,10 +42,10 @@ public class ExpandableListView extends AppCompatActivity implements OnClickList
         //Just add some data to start with
         AddProduct();
 
-        //get reference to the ExpandableListView
+        //get reference to the ExpandableListViewActivity
         expandableListView = (android.widget.ExpandableListView) findViewById(R.id.myList);
         //create the adapter by passing your ArrayList data
-        listAdapter = new MyListAdapter(ExpandableListView.this, SectionList);
+        listAdapter = new MyListAdapter(ExpandableListViewActivity.this, SectionList);
         //attach the adapter to the list
         expandableListView.setAdapter(listAdapter);
 

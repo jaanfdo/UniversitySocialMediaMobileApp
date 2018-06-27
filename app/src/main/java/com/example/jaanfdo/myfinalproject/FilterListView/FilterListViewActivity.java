@@ -18,7 +18,7 @@ import com.example.jaanfdo.myfinalproject.R;
 
 import java.util.ArrayList;
 
-public class MainActivityFilterListView extends AppCompatActivity {
+public class FilterListViewActivity extends AppCompatActivity {
 
     ListView lv;
     SearchView sv;

@@ -1,5 +1,6 @@
 package com.example.jaanfdo.myfinalproject.Employee;
 
+import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,7 +26,7 @@ import android.widget.Toast;
 
 import com.example.jaanfdo.myfinalproject.R;
 
-public class Home extends AppCompatActivity implements OnClickListener {
+public class EmployeeHomeActivity extends AppCompatActivity implements OnClickListener {
     BioData biodata = new BioData();
     TableLayout tabelBiodata;
 
@@ -77,7 +78,7 @@ public class Home extends AppCompatActivity implements OnClickListener {
 
         try {
 
-            arrayBiodata = new JSONArray(biodata.tampilBiodata());
+            arrayBiodata = new JSONArray(biodata.viewBiodata());
 
             for (int i = 0; i < arrayBiodata.length(); i++) {
                 JSONObject jsonChildNode = arrayBiodata.getJSONObject(i);
@@ -134,6 +135,11 @@ public class Home extends AppCompatActivity implements OnClickListener {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void  viewBiodata(View view){
+        Intent i = new Intent(this, ViewEmployeeActivity.class);
+        startActivity(i);
     }
 
     public void onClick(View view) {
@@ -220,7 +226,7 @@ public class Home extends AppCompatActivity implements OnClickListener {
                 String laporan = biodata.updateBiodata(viewId.getText().toString(), editNama.getText().toString(),
                         editAlamat.getText().toString());
 
-                Toast.makeText(Home.this, laporan, Toast.LENGTH_SHORT).show();
+                Toast.makeText(EmployeeHomeActivity.this, laporan, Toast.LENGTH_SHORT).show();
 
                 finish();
                 startActivity(getIntent());
@@ -263,7 +269,7 @@ public class Home extends AppCompatActivity implements OnClickListener {
 
                 String laporan = biodata.inserBiodata(nama, alamat);
 
-                Toast.makeText(Home.this, laporan, Toast.LENGTH_SHORT).show();
+                Toast.makeText(EmployeeHomeActivity.this, laporan, Toast.LENGTH_SHORT).show();
 
                 finish();
                 startActivity(getIntent());

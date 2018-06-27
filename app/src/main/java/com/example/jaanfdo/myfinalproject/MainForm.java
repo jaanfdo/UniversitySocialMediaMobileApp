@@ -1,6 +1,5 @@
 package com.example.jaanfdo.myfinalproject;
 
-import android.app.ExpandableListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -16,13 +15,15 @@ import android.view.MenuItem;
 
 import com.example.jaanfdo.myfinalproject.AlertDialog.ActivityAlertDialog2;
 import com.example.jaanfdo.myfinalproject.Buckys.BuckyActivity;
-import com.example.jaanfdo.myfinalproject.DynamicsViews.DynamicView;
-import com.example.jaanfdo.myfinalproject.ExpandableListView.ExpandableListView;
-import com.example.jaanfdo.myfinalproject.FilterListView.MainActivityFilterListView;
+import com.example.jaanfdo.myfinalproject.DynamicsViews.DynamicViewActivity;
+import com.example.jaanfdo.myfinalproject.Employee.EmployeeHomeActivity;
+import com.example.jaanfdo.myfinalproject.ExpandableListView.ExpandableListViewActivity;
+import com.example.jaanfdo.myfinalproject.FilterListView.FilterListViewActivity;
+import com.example.jaanfdo.myfinalproject.Hero.HerosActivity;
 import com.example.jaanfdo.myfinalproject.Notification.NotificationActivity;
 import com.example.jaanfdo.myfinalproject.Search.SearchActivity;
 import com.example.jaanfdo.myfinalproject.SpinnerSearch.SpinnerSearchActivity;
-import com.example.jaanfdo.myfinalproject.TableView.ActivityTableView;
+import com.example.jaanfdo.myfinalproject.TableView.TableViewActivity;
 import com.example.jaanfdo.myfinalproject.WebService.StudentActivity;
 
 public class MainForm extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -154,12 +155,20 @@ public class MainForm extends AppCompatActivity implements NavigationView.OnNavi
             Intent i = new Intent(this, BuckyActivity.class);
             startActivity(i);
         }
+        else if (id == R.id.employee){
+            Intent i = new Intent(this, EmployeeHomeActivity.class);
+            startActivity(i);
+        }
+        else if (id == R.id.Heros){
+            Intent i = new Intent(this, HerosActivity.class);
+            startActivity(i);
+        }
 
         else if (id == R.id.expandablelist) {
-            Intent intent1 = new Intent(this, ExpandableListView.class);
+            Intent intent1 = new Intent(this, ExpandableListViewActivity.class);
             startActivity(intent1);
         } else if (id == R.id.filterlist) {
-            Intent intent1 = new Intent(this,MainActivityFilterListView.class);
+            Intent intent1 = new Intent(this, FilterListViewActivity.class);
             startActivity(intent1);
         } else if (id == R.id.spinnersearch) {
             Intent intent1 = new Intent(this,SpinnerSearchActivity.class);
@@ -171,11 +180,11 @@ public class MainForm extends AppCompatActivity implements NavigationView.OnNavi
             startActivity(intent1);
         }
         else if (id == R.id.tableview) {
-            Intent intent1 = new Intent(this, ActivityTableView.class);
+            Intent intent1 = new Intent(this, TableViewActivity.class);
             startActivity(intent1);
         }
         else if (id == R.id.dynamicviews) {
-            Intent intent1 = new Intent(this,DynamicView.class);
+            Intent intent1 = new Intent(this,DynamicViewActivity.class);
             startActivity(intent1);
         }
 

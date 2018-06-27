@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 
 import com.example.jaanfdo.myfinalproject.R;
 
-public class DynamicView extends AppCompatActivity {
+public class DynamicViewActivity extends AppCompatActivity {
 
     private LinearLayout parentLinearLayout;
 

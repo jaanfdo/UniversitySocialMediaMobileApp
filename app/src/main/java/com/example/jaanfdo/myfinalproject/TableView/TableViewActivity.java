@@ -20,7 +20,7 @@ import com.example.jaanfdo.myfinalproject.R;
 import com.example.jaanfdo.myfinalproject.TableView.mModel.Spacecraft;
 import com.example.jaanfdo.myfinalproject.TableView.mDB.DBAdapter2;
 
-public class ActivityTableView extends AppCompatActivity {
+public class TableViewActivity extends AppCompatActivity {
 
 
     EditText nameEditText,propellantEditTxt,destEditTxt;
@@ -48,7 +48,7 @@ public class ActivityTableView extends AppCompatActivity {
         tb.addDataClickListener(new TableDataClickListener() {
             @Override
             public void onDataClicked(int rowIndex, Object clickedData) {
-                Toast.makeText(ActivityTableView.this, ((String[])clickedData)[1], Toast.LENGTH_SHORT).show();
+                Toast.makeText(TableViewActivity.this, ((String[])clickedData)[1], Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -92,15 +92,15 @@ public class ActivityTableView extends AppCompatActivity {
                 s.setDestination(destEditTxt.getText().toString());
 
 
-                if (new DBAdapter2(ActivityTableView.this).saveSpacecraft(s)) {
+                if (new DBAdapter2(TableViewActivity.this).saveSpacecraft(s)) {
                     nameEditText.setText("");
                     propellantEditTxt.setText("");
                     destEditTxt.setText("");
 
-                    tb.setDataAdapter(new SimpleTableDataAdapter(ActivityTableView.this, tableHelper.getSpaceProbes()));
+                    tb.setDataAdapter(new SimpleTableDataAdapter(TableViewActivity.this, tableHelper.getSpaceProbes()));
 
                 } else {
-                    Toast.makeText(ActivityTableView.this, "Not Saved", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TableViewActivity.this, "Not Saved", Toast.LENGTH_SHORT).show();
                 }
             }
         });

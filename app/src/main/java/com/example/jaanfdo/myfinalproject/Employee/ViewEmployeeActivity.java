@@ -19,7 +19,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ViewEmployee extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class ViewEmployeeActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     JSONArray result;
     ListView listView;
     BioData biodata = new BioData();
@@ -44,17 +44,17 @@ public class ViewEmployee extends AppCompatActivity implements AdapterView.OnIte
         ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
         try {
             //jsonObject = new JSONObject(JSON_STRING);
-            result = new JSONArray(biodata.tampilBiodata());
+            result = new JSONArray(biodata.viewBiodata());
             //arrayBiodata = new JSONArray(biodata.tampilBiodata());
             for(int i = 0; i<result.length(); i++){
                 JSONObject jo = result.getJSONObject(i);
 
                 String id = jo.getString("id");
-                String name = jo.getString("alamat");
+                String name = jo.getString("surname");
 
                 HashMap<String,String> employees = new HashMap<>();
                 employees.put("id",id);
-                employees.put("alamat",name);
+                employees.put("surname",name);
                 list.add(employees);
             }
 
@@ -63,8 +63,8 @@ public class ViewEmployee extends AppCompatActivity implements AdapterView.OnIte
         }
 
         ListAdapter adapter = new SimpleAdapter(
-                ViewEmployee.this, list, R.layout.listview,
-                new String[]{"id","alamat"},
+                ViewEmployeeActivity.this, list, R.layout.listview,
+                new String[]{"id","surname"},
                 new int[]{R.id.newsOwner, R.id.newsNews});
 
         listView.setAdapter(adapter);
@@ -72,6 +72,6 @@ public class ViewEmployee extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(ViewEmployee.this, "Clicked" + view.getId() +"/"+ position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(ViewEmployeeActivity.this, "Clicked" + view.getId() +"/"+ position, Toast.LENGTH_SHORT).show();
     }
 }

@@ -32,7 +32,7 @@ import java.util.List;
 
 import static android.view.View.GONE;
 
-public class Heros extends AppCompatActivity {
+public class HerosActivity extends AppCompatActivity {
     private static final int CODE_GET_REQUEST = 1024;
     private static final int CODE_POST_REQUEST = 1025;
 
@@ -203,7 +203,7 @@ public class Heros extends AppCompatActivity {
     }
 
     //inner class to perform network request extending an AsyncTask
-    private class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
+    public class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
 
         //the url where we need to send the request
         String url;
@@ -264,14 +264,25 @@ public class Heros extends AppCompatActivity {
         }
     }
 
-    class HeroAdapter extends ArrayAdapter<Hero> {
+    public class HeroAdapter extends ArrayAdapter<Hero> {
         //our hero list
         List<Hero> heroList;
 
+
         //constructor to get the list
         public HeroAdapter(List<Hero> heroList) {
-            super(Heros.this, R.layout.hero_list, heroList);
+            super(HerosActivity.this, R.layout.hero_list, heroList);
             this.heroList = heroList;
+
+            editTextHeroId = (EditText) findViewById(R.id.editTextHeroId);
+            editTextName = (EditText) findViewById(R.id.editTextName);
+            editTextRealname = (EditText) findViewById(R.id.editTextRealname);
+            ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+            spinnerTeam = (Spinner) findViewById(R.id.spinnerTeamAffiliation);
+
+            buttonAddUpdate = (Button) findViewById(R.id.buttonAddUpdate);
+
+            progressBar = (ProgressBar) findViewById(R.id.progressBar);
         }
 
         //method returning list item
@@ -323,7 +334,7 @@ public class Heros extends AppCompatActivity {
                 public void onClick(View view) {
 
                     // we will display a confirmation dialog before deleting
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Heros.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(HerosActivity.this);
 
                     builder.setTitle("Delete " + hero.getName())
                             .setMessage("Are you sure you want to delete it?")
