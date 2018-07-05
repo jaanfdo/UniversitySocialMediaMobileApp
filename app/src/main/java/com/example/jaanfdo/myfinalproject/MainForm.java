@@ -15,6 +15,7 @@ import android.view.MenuItem;
 
 import com.example.jaanfdo.myfinalproject.AlertDialog.ActivityAlertDialog2;
 import com.example.jaanfdo.myfinalproject.Buckys.BuckyActivity;
+import com.example.jaanfdo.myfinalproject.Charts.HomeChartActivity;
 import com.example.jaanfdo.myfinalproject.DynamicsViews.DynamicViewActivity;
 import com.example.jaanfdo.myfinalproject.Employee.EmployeeHomeActivity;
 import com.example.jaanfdo.myfinalproject.ExpandableListView.ExpandableListViewActivity;
@@ -122,6 +123,10 @@ public class MainForm extends AppCompatActivity implements NavigationView.OnNavi
         }
         else if (id == R.id.service) {
             Intent intent1 = new Intent(this, StudentActivity.class);
+            startActivity(intent1);
+        }
+        else if (id == R.id.chart) {
+            Intent intent1 = new Intent(this, HomeChartActivity.class);
             startActivity(intent1);
         }
 

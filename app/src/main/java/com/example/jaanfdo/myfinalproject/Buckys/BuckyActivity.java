@@ -54,9 +54,6 @@ public class BuckyActivity extends AppCompatActivity {
                 Toast.makeText(BuckyActivity.this, "Clicked" + i, Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
     }
     public void addButtonClicked(View v){
         String bucky = buckyInput.getText().toString();

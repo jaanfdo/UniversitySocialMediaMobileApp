@@ -30,7 +30,7 @@ public class EmployeeHomeActivity extends AppCompatActivity implements OnClickLi
     BioData biodata = new BioData();
     TableLayout tabelBiodata;
 
-    Button buttonTambahBiodata;
+    Button buttonBiodata;
     ArrayList<Button> buttonEdit = new ArrayList<Button>();
     ArrayList<Button> buttonDelete = new ArrayList<Button>();
 
@@ -47,33 +47,33 @@ public class EmployeeHomeActivity extends AppCompatActivity implements OnClickLi
 
 
         tabelBiodata = (TableLayout) findViewById(R.id.tableBiodata);
-        buttonTambahBiodata = (Button) findViewById(R.id.buttonTambahBiodata);
-        buttonTambahBiodata.setOnClickListener(this);
+        buttonBiodata = (Button) findViewById(R.id.buttonTambahBiodata);
+        buttonBiodata.setOnClickListener(this);
 
-        TableRow barisTabel = new TableRow(this);
-        barisTabel.setBackgroundColor(Color.CYAN);
+        TableRow tblRow = new TableRow(this);
+        tblRow.setBackgroundColor(Color.CYAN);
 
         TextView viewHeaderId = new TextView(this);
-        TextView viewHeaderNama = new TextView(this);
-        TextView viewHeaderAlamat = new TextView(this);
+        TextView viewHeaderName = new TextView(this);
+        TextView viewHeaderSurname = new TextView(this);
         TextView viewHeaderAction = new TextView(this);
 
         viewHeaderId.setText("ID");
-        viewHeaderNama.setText("Nama");
-        viewHeaderAlamat.setText("Alamat");
+        viewHeaderName.setText("Name");
+        viewHeaderSurname.setText("Surname");
         viewHeaderAction.setText("Action");
 
         viewHeaderId.setPadding(5, 1, 5, 1);
-        viewHeaderNama.setPadding(5, 1, 5, 1);
-        viewHeaderAlamat.setPadding(5, 1, 5, 1);
+        viewHeaderName.setPadding(5, 1, 5, 1);
+        viewHeaderSurname.setPadding(5, 1, 5, 1);
         viewHeaderAction.setPadding(5, 1, 5, 1);
 
-        barisTabel.addView(viewHeaderId);
-        barisTabel.addView(viewHeaderNama);
-        barisTabel.addView(viewHeaderAlamat);
-        barisTabel.addView(viewHeaderAction);
+        tblRow.addView(viewHeaderId);
+        tblRow.addView(viewHeaderName);
+        tblRow.addView(viewHeaderSurname);
+        tblRow.addView(viewHeaderAction);
 
-        tabelBiodata.addView(barisTabel, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
+        tabelBiodata.addView(tblRow, new TableLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT));
 
         try {
@@ -82,56 +82,52 @@ public class EmployeeHomeActivity extends AppCompatActivity implements OnClickLi
 
             for (int i = 0; i < arrayBiodata.length(); i++) {
                 JSONObject jsonChildNode = arrayBiodata.getJSONObject(i);
-                String name = jsonChildNode.optString("nama");
-                String alamat = jsonChildNode.optString("alamat");
+                String name = jsonChildNode.optString("name");
+                String alamat = jsonChildNode.optString("surname");
                 String id = jsonChildNode.optString("id");
 
                 //System.out.println("Nama :" + name);
                 //System.out.println("Alamat :" + alamat);
                 //System.out.println("ID :" + id);
 
-                barisTabel = new TableRow(this);
+                tblRow = new TableRow(this);
 
                 if (i % 2 == 0) {
-                    barisTabel.setBackgroundColor(Color.LTGRAY);
+                    tblRow.setBackgroundColor(Color.LTGRAY);
                 }
 
                 TextView viewId = new TextView(this);
                 viewId.setText(id);
                 viewId.setPadding(5, 1, 5, 1);
-                barisTabel.addView(viewId);
+                tblRow.addView(viewId);
 
-                TextView viewNama = new TextView(this);
-                viewNama.setText(name);
-                viewNama.setPadding(5, 1, 5, 1);
-                barisTabel.addView(viewNama);
+                TextView viewName = new TextView(this);
+                viewName.setText(name);
+                viewName.setPadding(5, 1, 5, 1);
+                tblRow.addView(viewName);
 
-                TextView viewAlamat = new TextView(this);
-                viewAlamat.setText(alamat);
-                viewAlamat.setPadding(5, 1, 5, 1);
-                barisTabel.addView(viewAlamat);
+                TextView viewSurname = new TextView(this);
+                viewSurname.setText(alamat);
+                viewSurname.setPadding(5, 1, 5, 1);
+                tblRow.addView(viewSurname);
 
                 buttonEdit.add(i, new Button(this));
                 buttonEdit.get(i).setId(Integer.parseInt(id));
                 buttonEdit.get(i).setTag("Edit");
                 buttonEdit.get(i).setText("Edit");
                 buttonEdit.get(i).setOnClickListener(this);
-                barisTabel.addView(buttonEdit.get(i));
+                tblRow.addView(buttonEdit.get(i));
 
                 buttonDelete.add(i, new Button(this));
                 buttonDelete.get(i).setId(Integer.parseInt(id));
                 buttonDelete.get(i).setTag("Delete");
                 buttonDelete.get(i).setText("Delete");
                 buttonDelete.get(i).setOnClickListener(this);
-                barisTabel.addView(buttonDelete.get(i));
+                tblRow.addView(buttonDelete.get(i));
 
-                tabelBiodata.addView(barisTabel, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+                tabelBiodata.addView(tblRow, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                         LayoutParams.MATCH_PARENT));
             }
-
-
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }

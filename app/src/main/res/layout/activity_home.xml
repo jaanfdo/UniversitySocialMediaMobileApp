@@ -7,13 +7,23 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/buttonTambahBiodata"
-            android:layout_width="186dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:onClick="viewBiodata"
-            android:text="View Biodata" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="horizontal">
+            <Button
+                android:id="@+id/buttonTambahBiodata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Add Biodata" />
+            <Button
+                android:id="@+id/buttonviewBiodata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:onClick="viewBiodata"
+                android:text="View Biodata List" />
+        </LinearLayout>
 
         <HorizontalScrollView
             android:id="@+id/horizontalScrollView"
