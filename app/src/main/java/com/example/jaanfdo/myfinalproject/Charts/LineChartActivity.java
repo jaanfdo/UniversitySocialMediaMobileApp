@@ -31,6 +31,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.Utils;
 
 import java.util.ArrayList;
@@ -79,20 +80,26 @@ public class LineChartActivity extends AppCompatActivity implements OnSeekBarCha
         // enable scaling and dragging
         mChart.setDragEnabled(true);
         mChart.setScaleEnabled(true);
-        // mChart.setScaleXEnabled(true);
-        // mChart.setScaleYEnabled(true);
+        //mChart.setScaleXEnabled(true);
+        //mChart.setScaleYEnabled(true);
 
         // if disabled, scaling can be done on x- and y-axis separately
         mChart.setPinchZoom(true);
 
         // set an alternative background color
-        // mChart.setBackgroundColor(Color.GRAY);
+        mChart.setBackgroundColor(Color.GRAY);
 
-        // create a custom MarkerView (extend MarkerView) and specify the layout
-        // to use for it
+        // create a custom MarkerView (extend MarkerView) and specify the layout to use for it
         MyMarkerView mv = new MyMarkerView(this, R.layout.custom_marker_view);
         mv.setChartView(mChart); // For bounds control
         mChart.setMarker(mv); // Set the marker to the chart
+
+        XAxis xAxis = mChart.getXAxis();
+        xAxis.enableGridDashedLine(10f, 10f, 0f);
+        //xAxis.setValueFormatter(new MyCustomXAxisValueFormatter());
+        //xAxis.addLimitLine(llXAxis); // add x-axis limit line
+
+        //Typeface tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
 
         // x-axis limit line
         LimitLine llXAxis = new LimitLine(10f, "Index 10");
@@ -100,14 +107,6 @@ public class LineChartActivity extends AppCompatActivity implements OnSeekBarCha
         llXAxis.enableDashedLine(10f, 10f, 0f);
         llXAxis.setLabelPosition(LimitLabelPosition.RIGHT_BOTTOM);
         llXAxis.setTextSize(10f);
-
-        XAxis xAxis = mChart.getXAxis();
-        xAxis.enableGridDashedLine(10f, 10f, 0f);
-        //xAxis.setValueFormatter(new MyCustomXAxisValueFormatter());
-        //xAxis.addLimitLine(llXAxis); // add x-axis limit line
-
-
-//        Typeface tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
 
         LimitLine ll1 = new LimitLine(150f, "Upper Limit");
         ll1.setLineWidth(4f);
@@ -129,7 +128,7 @@ public class LineChartActivity extends AppCompatActivity implements OnSeekBarCha
         leftAxis.addLimitLine(ll2);
         leftAxis.setAxisMaximum(200f);
         leftAxis.setAxisMinimum(-50f);
-        //leftAxis.setYOffset(20f);
+        leftAxis.setYOffset(20f);
         leftAxis.enableGridDashedLine(10f, 10f, 0f);
         leftAxis.setDrawZeroLine(false);
 
@@ -149,16 +148,27 @@ public class LineChartActivity extends AppCompatActivity implements OnSeekBarCha
 //        mChart.centerViewTo(20, 50, AxisDependency.LEFT);
 
         mChart.animateX(2500);
-        //mChart.invalidate();
 
         // get the legend (only possible after setting data)
         Legend l = mChart.getLegend();
 
         // modify the legend ...
         l.setForm(LegendForm.LINE);
+        l.setFormSize(10f); // set the size of the legend forms/shapes
+        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+        //l.setTypeface();
+        l.setTextSize(12f);
+        l.setTextColor(Color.BLACK);
+        l.setXEntrySpace(5f); // set the space between the legend entries on the x-axis
+        l.setYEntrySpace(5f); // set the space between the legend entries on the y-axis
 
-        // // dont forget to refresh the drawing
-        // mChart.invalidate();
+        // set custom labels and colors
+        //l.setCustom(ColorTemplate.VORDIPLOM_COLORS, new String[] { "Set1", "Set2", "Set3", "Set4", "Set5" });
+
+        // and many more...
+
+        //dont forget to refresh the drawing
+        mChart.invalidate();
     }
 
     @Override
@@ -353,8 +363,7 @@ public class LineChartActivity extends AppCompatActivity implements OnSeekBarCha
 
         LineDataSet set1;
 
-        if (mChart.getData() != null &&
-                mChart.getData().getDataSetCount() > 0) {
+        if (mChart.getData() != null && mChart.getData().getDataSetCount() > 0) {
             set1 = (LineDataSet)mChart.getData().getDataSetByIndex(0);
             set1.setValues(values);
             mChart.getData().notifyDataChanged();

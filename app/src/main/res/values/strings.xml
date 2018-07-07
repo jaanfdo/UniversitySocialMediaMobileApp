@@ -81,6 +81,7 @@
     <string name="pick_dish">What is  your favourite Dish ?</string>
     <string name="ok">OK</string>
     <string name="time_picker_title">Select Time</string>
+    <string name="lineChart">Line Chart</string>
 
     <string-array name="teams">
         <item>Real Madrid</item>

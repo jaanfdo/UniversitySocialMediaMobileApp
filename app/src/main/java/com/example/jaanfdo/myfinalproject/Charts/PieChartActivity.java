@@ -66,6 +66,7 @@ public class PieChartActivity extends AppCompatActivity implements OnSeekBarChan
         mChart.setDragDecelerationFrictionCoef(0.95f);
 
         //mChart.setCenterTextTypeface(mTfLight);
+
         mChart.setCenterText(generateCenterSpannableText());
 
         mChart.setDrawHoleEnabled(true);
