@@ -132,8 +132,6 @@ public class FilterListViewActivity extends AppCompatActivity {
 
     }
 
-
-
 }
 
 

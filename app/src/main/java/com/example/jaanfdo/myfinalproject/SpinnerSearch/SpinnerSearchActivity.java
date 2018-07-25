@@ -19,8 +19,7 @@ public class SpinnerSearchActivity extends AppCompatActivity implements AdapterV
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner_search);
         // Creating ArrayAdapter using the string array and default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.mobile_manufacturers, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.mobile_manufacturers, android.R.layout.simple_spinner_item);
         // Specify layout to be used when list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Applying the adapter to our spinner

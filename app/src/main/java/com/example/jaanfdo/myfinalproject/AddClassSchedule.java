@@ -129,8 +129,9 @@ public class AddClassSchedule extends AppCompatActivity {
         String classno = txtClassNo.getText().toString();
         String classfloor = txtClassFloor.getText().toString();
         String lecname = txtLecName.getText().toString();
+
         ScheduleBL schedule = new ScheduleBL(course, subject,date,time,classfloor,classno,lecname);
-        db.add(schedule);
+        db.create(schedule);
 
         Toast.makeText(getApplicationContext(), "Record Added", Toast.LENGTH_SHORT).show();
     }

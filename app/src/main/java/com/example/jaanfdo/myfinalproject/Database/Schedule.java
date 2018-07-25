@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.jaanfdo.myfinalproject.BusinessClass.ScheduleBL;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jaanfdo on 6/4/2017.
@@ -25,17 +26,16 @@ public class Schedule extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("Create table" +TABLE_NAME+ "" +
-                "(id Text primary key autoincrement, course Text null, subjects Text null, date DateTime null, time Time null, class_floor Text null, class_no Text null, lecturer Text null)");
+        sqLiteDatabase.execSQL(String.format("Create table(id Text primary key autoincrement, course Text null, subjects Text null, date DateTime null, time Time null, class_floor Text null, class_no Text null, lecturer Text null)", TABLE_NAME));
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP_TABLE_IF_EXISTS" + TABLE_NAME);
+        sqLiteDatabase.execSQL(String.format("DROP_TABLE_IF_EXISTS", TABLE_NAME));
         onCreate(sqLiteDatabase);
     }
 
-    public void add(ScheduleBL schedule){
+    public boolean create(ScheduleBL schedule){
         ContentValues values = new ContentValues();
         values.put("course", schedule.getCourse());
         values.put("subjects", schedule.getSubject());
@@ -45,14 +45,17 @@ public class Schedule extends SQLiteOpenHelper {
         values.put("class_no", schedule.getClassno());
         values.put("lecturer", schedule.getLecname());
 
-        SQLiteDatabase db = getWritableDatabase();
-        db.insert(TABLE_NAME, null, values);
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean createSuccessful = db.insert(TABLE_NAME, null, values) > 0;
         db.close();
+
+        return createSuccessful;
     }
 
-    public void insertSomeCountries() {
+    /*public void insertSomeCountries() {
         new ScheduleBL("BEng (Hons) in SE","AI","2017-10-1","10:00","2","E2","Mahesha");
-    }
+    }*/
+
     public void delete (ScheduleBL schedule){
         ContentValues values = new ContentValues();
         SQLiteDatabase db = getWritableDatabase();
@@ -74,45 +77,6 @@ public class Schedule extends SQLiteOpenHelper {
         db.execSQL("UPDATE " + TABLE_NAME + "SET " + values + " WHERE id=" +schedule.getId()+ ";");
         db.close();
     }
-
-    public String DisplayAll(){
-        String dbString = "";
-        SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT * FROM" +TABLE_NAME+ "";
-
-        Cursor c = db.rawQuery(query, null);
-        c.moveToFirst();
-
-        while (c.moveToLast()){
-            if (c.getString(c.getColumnIndex("productname"))!=null){
-                dbString += c.getString(c.getColumnIndex("productname"));
-                dbString += "\n";
-            }
-            db.close();
-
-        }
-        return dbString;
-    }
-
-    public Cursor DisplayAllDetails(){
-        String dbString = "";
-        SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT * FROM" +TABLE_NAME+ "";
-
-        Cursor c = db.rawQuery(query, null);
-        c.moveToFirst();
-
-        /*while (c.moveToLast()){
-            if (c.getString(c.getColumnIndex("productname"))!=null){
-                dbString += c.getString(c.getColumnIndex("productname"));
-                dbString += "\n";
-            }
-            db.close();
-        }*/
-
-        return c;
-    }
-
     public ArrayList<String> getAllSchedule() {
         ArrayList<String> array_list = new ArrayList<String>();
 
@@ -137,6 +101,52 @@ public class Schedule extends SQLiteOpenHelper {
         String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM" +TABLE_NAME+ "WHERE id=" +schedule.getId()+ ";";
+
+        Cursor c = db.rawQuery(query, null);
+        c.moveToFirst();
+
+        while (c.moveToLast()){
+            if (c.getString(c.getColumnIndex("productname"))!=null){
+                dbString += c.getString(c.getColumnIndex("productname"));
+                dbString += "\n";
+            }
+            db.close();
+
+        }
+        return dbString;
+    }
+
+    public List<ScheduleBL> DisplayAllDetails(){
+        List<ScheduleBL> recordsList = new ArrayList<ScheduleBL>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = String.format("SELECT * FROM ", TABLE_NAME);
+        Cursor c = db.rawQuery(query, null);
+
+        if(c.moveToFirst()) {
+            while (c.moveToLast()){
+                ScheduleBL schedule = new ScheduleBL();
+                schedule.setId(c.getString(c.getColumnIndex("id")));
+                schedule.setCourse(c.getString(c.getColumnIndex("course")));
+                schedule.setSubject(c.getString(c.getColumnIndex("subjects")));
+                schedule.setDate(c.getString(c.getColumnIndex("date")));
+                schedule.setTime(c.getString(c.getColumnIndex("time")));
+                schedule.setClassfloor(c.getString(c.getColumnIndex("class_floor")));
+                schedule.setClassno(c.getString(c.getColumnIndex("class_no")));
+                schedule.setLecname(c.getString(c.getColumnIndex("lecturer")));
+
+                recordsList.add(schedule);
+            }
+        }
+        c.close();
+        db.close();
+
+        return recordsList;
+    }
+
+    public String DisplayAll(){
+        String dbString = "";
+        SQLiteDatabase db = getWritableDatabase();
+        String query = String.format("SELECT * FROM", TABLE_NAME);
 
         Cursor c = db.rawQuery(query, null);
         c.moveToFirst();

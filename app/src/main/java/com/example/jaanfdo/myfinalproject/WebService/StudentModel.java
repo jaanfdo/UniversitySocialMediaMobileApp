@@ -16,26 +16,26 @@ public class StudentModel extends Configuration {
     private RestTemplate restTemplate = new RestTemplate();
 
     String url = "";
-    String response = "";
-    //List<Student> response = null;
+    //String response = "";
+    List<Student> response = null;
     //JSONArray result;
     List<Student> students = null;
 
-    /*public List<Student> findAll(){
+    public List<Student> findAll(){
         try{
             url = Base_URL + "findall";
             System.out.println("URL : " + url);
 
-            //response = restTemplate.exchange( url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {}).getBody();
+            response = restTemplate.exchange( url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {}).getBody();
 
-            //return response;
+            return response;
         }catch (Exception e)
         {
             return null;
         }
-    }*/
+    }
 
-    public String findAll() {
+    /*public String findAll() {
         try {
             url = Base_URL + "findall";
             System.out.println("URL : " + url);
@@ -45,6 +45,5 @@ public class StudentModel extends Configuration {
         } catch (Exception e) {
         }
         return response;
-    }
-
+    }*/
 }

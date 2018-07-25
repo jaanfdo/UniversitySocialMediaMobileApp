@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/login"
+        android:icon="@android:drawable/ic_dialog_info"
+        app:showAsAction="always"
+        android:title="Login" />
+    <item
+        android:id="@+id/signup"
+        android:icon="@android:drawable/ic_dialog_info"
+        app:showAsAction="always"
+        android:title="Sign Up" />
+    <item
+        android:id="@+id/chart"
+        android:icon="@android:drawable/ic_dialog_info"
+        app:showAsAction="always"
+        android:title="Chart" />
+    <item
+        android:id="@+id/notification"
+        android:icon="@android:drawable/ic_dialog_info"
+        app:showAsAction="always"
+        android:title="Notification" />
+    <item
+        android:id="@+id/service"
+        android:icon="@android:drawable/ic_dialog_info"
+        app:showAsAction="always"
+        android:title="Service" />
+</menu>

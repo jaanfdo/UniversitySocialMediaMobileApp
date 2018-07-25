@@ -15,6 +15,9 @@ public class ScheduleBL {
     private String classno;
     private  String lecname;
 
+    public ScheduleBL() {
+    }
+
     public ScheduleBL(String id, String course, String subject, String date, String time, String classfloor, String classno, String lecname) {
         this.id = id;
         this.course = course;

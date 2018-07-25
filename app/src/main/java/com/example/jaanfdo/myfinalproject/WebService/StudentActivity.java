@@ -28,22 +28,22 @@ public class StudentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
 
-        /*List<Student> students = null;
+        List<Student> students = null;
         try {
             students = new HttpRequestProductList().execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
-        }*/
+        }
 
         listView = (ListView) findViewById(R.id.listViewStudent);
-        //listView.setAdapter(new StudentListAdapter(students, getApplicationContext()));
+        listView.setAdapter(new StudentListAdapter(students, getApplicationContext()));
 
-        showEmployee();
+        //showEmployee();
     }
 
-    private void showEmployee(){
+    /*private void showEmployee(){
         JSONObject jsonObject = null;
         ArrayList<HashMap<String, String>> list = new ArrayList<>();
         try {
@@ -73,9 +73,9 @@ public class StudentActivity extends AppCompatActivity {
                 new int[]{R.id.textViewID, R.id.textViewName});
 
         listView.setAdapter(adapter);
-    }
+    }*/
 
-    /*private class HttpRequestProductList extends AsyncTask<Void, Void, List<Student>> {
+    private class HttpRequestProductList extends AsyncTask<Void, Void, List<Student>> {
 
         @Override
         protected List<Student> doInBackground(Void... voids) {
@@ -87,5 +87,5 @@ public class StudentActivity extends AppCompatActivity {
         protected void onPostExecute(List<Student> students) {
             super.onPostExecute(students);
         }
-    }*/
+    }
 }
