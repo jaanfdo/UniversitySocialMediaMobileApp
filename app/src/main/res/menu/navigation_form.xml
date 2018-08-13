@@ -13,7 +13,7 @@
         android:title="search"
         app:showAsAction="always"
         app:actionViewClass="android.widget.SearchView" />
-    <group android:checkableBehavior="single">
+    <group >
         <item
             android:id="@+id/expandablelist"
             android:icon="@drawable/ic_menu_send"
@@ -28,7 +28,7 @@
             android:title="Spinner Search" />
     </group>
 
-    <group android:checkableBehavior="single">
+    <group >
         <item
             android:id="@+id/alertdialog"
             android:icon="@drawable/ic_menu_send"

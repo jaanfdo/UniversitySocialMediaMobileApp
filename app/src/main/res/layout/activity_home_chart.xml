@@ -1,34 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Charts.HomeChartActivity"
-    android:orientation="vertical">
-
-    <Button
-        android:layout_width="match_parent"
+     >
+    <LinearLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pie Chart"
-        android:id="@+id/piechart"
-        android:onClick="piechartclick"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Bar Chart"
-        android:id="@+id/barchart"
-        android:onClick="barchartclick"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Line Chart"
-        android:id="@+id/linechart"
-        android:onClick="linechartclick"/>
-
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/chart"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-</LinearLayout>
+        android:orientation="vertical">
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/linechart"
+            android:layout_width="match_parent"
+            android:layout_height="500dp" />
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barchart"
+            android:layout_width="match_parent"
+            android:layout_height="500dp" />
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/piechart"
+            android:layout_width="match_parent"
+            android:layout_height="500dp" />
+    </LinearLayout>
+</ScrollView>

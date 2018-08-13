@@ -11,6 +11,9 @@ public class NewsBL {
     private String time;
     private String owner;
 
+    public NewsBL() {
+    }
+
     public NewsBL(String id, String news, String date, String time, String owner) {
         this.id = id;
         this.news = news;

@@ -31,6 +31,7 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.MPPointF;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ import java.util.ArrayList;
 public class BarChartActivity extends AppCompatActivity implements OnSeekBarChangeListener,
         OnChartValueSelectedListener {
 
-    protected BarChart mChart;
+    protected BarChart mChart, mChartAct;
     private SeekBar mSeekBarX, mSeekBarY;
     private TextView tvX, tvY;
 
@@ -59,10 +60,8 @@ public class BarChartActivity extends AppCompatActivity implements OnSeekBarChan
 
         mChart = (BarChart) findViewById(R.id.chart1);
         mChart.setOnChartValueSelectedListener(this);
-
         mChart.setDrawBarShadow(false);
         mChart.setDrawValueAboveBar(true);
-
         mChart.getDescription().setEnabled(false);
 
         // if more than 60 entries are displayed in the chart, no values will be
@@ -71,7 +70,6 @@ public class BarChartActivity extends AppCompatActivity implements OnSeekBarChan
 
         // scaling can now only be done on x- and y-axis separately
         mChart.setPinchZoom(false);
-
         mChart.setDrawGridBackground(false);
         // mChart.setDrawYLabels(false);
 
@@ -88,20 +86,20 @@ public class BarChartActivity extends AppCompatActivity implements OnSeekBarChan
         IAxisValueFormatter custom = new MyAxisValueFormatter();
 
         YAxis leftAxis = mChart.getAxisLeft();
+        leftAxis.setPosition(YAxisLabelPosition.OUTSIDE_CHART);
         //leftAxis.setTypeface(mTfLight);
         leftAxis.setLabelCount(8, false);
         leftAxis.setValueFormatter(custom);
-        leftAxis.setPosition(YAxisLabelPosition.OUTSIDE_CHART);
         leftAxis.setSpaceTop(15f);
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
-        YAxis rightAxis = mChart.getAxisRight();
-        rightAxis.setDrawGridLines(false);
+        //YAxis rightAxis = mChart.getAxisRight();
+        //rightAxis.setDrawGridLines(false);
         //rightAxis.setTypeface(mTfLight);
-        rightAxis.setLabelCount(8, false);
-        rightAxis.setValueFormatter(custom);
-        rightAxis.setSpaceTop(15f);
-        rightAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+        //rightAxis.setLabelCount(8, false);
+        //rightAxis.setValueFormatter(custom);
+        //rightAxis.setSpaceTop(15f);
+        //rightAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
         Legend l = mChart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
@@ -120,6 +118,7 @@ public class BarChartActivity extends AppCompatActivity implements OnSeekBarChan
         XYMarkerView mv = new XYMarkerView(this, xAxisFormatter);
         mv.setChartView(mChart); // For bounds control
         mChart.setMarker(mv); // Set the marker to the chart
+
 
         setData(12, 50);
 

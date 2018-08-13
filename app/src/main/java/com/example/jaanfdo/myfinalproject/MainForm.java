@@ -88,10 +88,7 @@ public class MainForm extends AppCompatActivity implements NavigationView.OnNavi
         });
 
 
-        /*ArrayAdapter arrayAdapter = ArrayAdapter.createFromResource(this, R.array.mobile_manufacturers, android.R.layout.simple_list_item_1  );
-        ListView listViewItems = (ListView) findViewById(R.id.eventlistview);
-        listViewItems.setAdapter(arrayAdapter);
-
+        /*
         ArrayAdapter arrayAdapter2 = ArrayAdapter.createFromResource(this, R.array.Planets, android.R.layout.simple_list_item_1);
         ListView listViewItems2 = (ListView) findViewById(R.id.schedulelistview);
         listViewItems2.setAdapter(arrayAdapter2);
@@ -100,35 +97,35 @@ public class MainForm extends AppCompatActivity implements NavigationView.OnNavi
         ListView listViewItems3 = (ListView) findViewById(R.id.newslistview);
         listViewItems3.setAdapter(arrayAdapter3);*/
 
-        /*BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigationView);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        int id = item.getItemId();
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    int id = item.getItemId();
 
-                        if (id == R.id.signup) {
-                            Intent intent1 = new Intent(getBaseContext(),SignUp.class);
-                            startActivity(intent1);
-                        } else if (id == R.id.login) {
-                            Intent intent1 = new Intent(getBaseContext(),Login.class);
-                            startActivity(intent1);
-                        }
-                        else if (id == R.id.notification) {
-                            Intent intent1 = new Intent(getBaseContext(),NotificationActivity.class);
-                            startActivity(intent1);
-                        }
-                        else if (id == R.id.service) {
-                            Intent intent1 = new Intent(getBaseContext(), StudentActivity.class);
-                            startActivity(intent1);
-                        }
-                        else if (id == R.id.chart) {
-                            Intent intent1 = new Intent(getBaseContext(), HomeChartActivity.class);
-                            startActivity(intent1);
-                        }
-                        return true;
+                    if (id == R.id.signup) {
+                        Intent intent1 = new Intent(getBaseContext(),SignUp.class);
+                        startActivity(intent1);
+                    } else if (id == R.id.login) {
+                        Intent intent1 = new Intent(getBaseContext(),Login.class);
+                        startActivity(intent1);
                     }
-                });*/
+                    else if (id == R.id.notification) {
+                        Intent intent1 = new Intent(getBaseContext(),NotificationActivity.class);
+                        startActivity(intent1);
+                    }
+                    else if (id == R.id.service) {
+                        Intent intent1 = new Intent(getBaseContext(), StudentActivity.class);
+                        startActivity(intent1);
+                    }
+                    else if (id == R.id.chart) {
+                        Intent intent1 = new Intent(getBaseContext(), HomeChartActivity.class);
+                        startActivity(intent1);
+                    }
+                    return true;
+                }
+            });
     }
 
     @Override
@@ -150,7 +147,6 @@ public class MainForm extends AppCompatActivity implements NavigationView.OnNavi
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
 
         if (id == R.id.info) {
             Intent intent1 = new Intent(this,Profile.class);
