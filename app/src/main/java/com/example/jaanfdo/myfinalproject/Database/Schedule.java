@@ -20,13 +20,13 @@ public class Schedule extends SQLiteOpenHelper {
     private static   String DATABASE_NAME = "SchoolISS.db";
     public  static   String TABLE_NAME = "schedule";
 
-    public Schedule(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+    public Schedule(Context context){
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
     }
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(String.format("Create table(id Text primary key autoincrement, course Text null, subjects Text null, date DateTime null, time Time null, class_floor Text null, class_no Text null, lecturer Text null)", TABLE_NAME));
+        sqLiteDatabase.execSQL("Create table " + TABLE_NAME +" (id Text primary key autoincrement, course Text null, subjects Text null, date DateTime null, time Time null, class_floor Text null, class_no Text null, lecturer Text null)");
     }
 
     @Override

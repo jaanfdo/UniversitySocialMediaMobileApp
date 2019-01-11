@@ -18,14 +18,14 @@ public class NewsDB extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "SchoolISS.db";
     private static final String TABLE_NAME = "news";
 
-    public NewsDB(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+    public NewsDB(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(String.format("Create table(id Text primary key autoincrement, news text not null, date DateTime not null,time Time not null, owner Text not null)", TABLE_NAME));
+        sqLiteDatabase.execSQL("Create table " +  TABLE_NAME + " (id Text primary key autoincrement, news text not null, date DateTime not null,time Time not null, owner Text not null)");
     }
 
     @Override

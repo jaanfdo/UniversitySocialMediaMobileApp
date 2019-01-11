@@ -25,13 +25,13 @@ public class Appointment extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("Create table" +TABLE_NAME+ "" +
+        sqLiteDatabase.execSQL("Create table " +TABLE_NAME+ "" +
                 "(id Text primary key autoincrement, course Text not null, date DateTime not null, time DateTime not null, lecturer Text not null,reason Text not null)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP_TABLE_IF_EXISTS" + TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
 

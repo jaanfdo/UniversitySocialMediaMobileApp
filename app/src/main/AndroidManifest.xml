@@ -67,7 +67,8 @@
         <activity android:name=".Charts.BarChartActivity" />
         <activity android:name=".Charts.LineChartActivity" />
         <activity android:name=".Charts.HomeChartActivity" />
-        <activity android:name=".Students.StudentsActivity"></activity>
+        <activity android:name=".Students.StudentsActivity" />
+        <activity android:name=".User.UsersActivity"></activity>
     </application>
 
 </manifest>

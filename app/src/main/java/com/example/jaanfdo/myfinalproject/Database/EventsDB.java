@@ -20,19 +20,18 @@ public class EventsDB extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "events";
 
 
-    public EventsDB(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+    public EventsDB(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("Create table" +TABLE_NAME+ "" +
-                "(id Text primary key autoincrement, event_name  text not null, course Text not null, date DateTime not null,time Time not null, place Text not null, description Text null)");
+        sqLiteDatabase.execSQL("Create table " +TABLE_NAME+ "(id Text primary key autoincrement, event_name text not null, course Text not null, date DateTime not null,time Time not null, place Text not null, description Text)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP_TABLE_IF_EXISTS" + TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
     public void add(EventsBL obj){

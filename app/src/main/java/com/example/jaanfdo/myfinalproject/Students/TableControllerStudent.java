@@ -75,15 +75,10 @@ public class TableControllerStudent extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-
-                int id = Integer.parseInt(cursor.getString(cursor.getColumnIndex("id")));
-                String studentFirstname = cursor.getString(cursor.getColumnIndex("firstname"));
-                String studentEmail = cursor.getString(cursor.getColumnIndex("email"));
-
                 ObjectStudent objectStudent = new ObjectStudent();
-                objectStudent.id = id;
-                objectStudent.firstname = studentFirstname;
-                objectStudent.email = studentEmail;
+                objectStudent.id = Integer.parseInt(cursor.getString(cursor.getColumnIndex("id")));
+                objectStudent.firstname = cursor.getString(cursor.getColumnIndex("firstname"));
+                objectStudent.email = cursor.getString(cursor.getColumnIndex("email"));
 
                 recordsList.add(objectStudent);
 
@@ -104,14 +99,10 @@ public class TableControllerStudent extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(sql, null);
 
         if (cursor.moveToFirst()) {
-            int id = Integer.parseInt(cursor.getString(cursor.getColumnIndex("id")));
-            String firstname = cursor.getString(cursor.getColumnIndex("firstname"));
-            String email = cursor.getString(cursor.getColumnIndex("email"));
-
             objectStudent = new ObjectStudent();
-            objectStudent.id = id;
-            objectStudent.firstname = firstname;
-            objectStudent.email = email;
+            objectStudent.id = Integer.parseInt(cursor.getString(cursor.getColumnIndex("id")));
+            objectStudent.firstname = cursor.getString(cursor.getColumnIndex("firstname"));
+            objectStudent.email = cursor.getString(cursor.getColumnIndex("email"));
         }
 
         cursor.close();
