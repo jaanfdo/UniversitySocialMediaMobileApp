@@ -10,21 +10,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.jaanfdo.myfinalproject.BusinessClass.ScheduleBL;
-import com.example.jaanfdo.myfinalproject.Database.Schedule;
+import com.example.jaanfdo.myfinalproject.Database.ScheduleDB;
 
-import java.sql.Time;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class AddClassSchedule extends AppCompatActivity {
 
@@ -35,7 +31,7 @@ public class AddClassSchedule extends AppCompatActivity {
     Button button;
     Spinner CourseSpinner;
     ArrayList<String> name =  new ArrayList<>();
-    Schedule db;
+    ScheduleDB db;
 
 
     //get list data

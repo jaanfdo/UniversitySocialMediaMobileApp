@@ -40,18 +40,18 @@ public class ScheduleFragment extends Fragment {
         ScheduleBL obj = null;
 
         obj = new ScheduleBL();
-        obj.setLecname("Topher");
+        obj.setLecname("aa aaaa");
         obj.setCourse("aaaaaaaaaa");
         contactlist.add(obj);
 
         obj = new ScheduleBL();
-        obj.setLecname("Bewosss");
-        obj.setCourse("sssssssssssssssssssss");
+        obj.setLecname("ssss sssss");
+        obj.setCourse("ssss sssss sssssss sssss");
         contactlist.add(obj);
 
         obj = new ScheduleBL();
-        obj.setLecname("Ruwaaa");
-        obj.setCourse("ssssssssssdddddddd");
+        obj.setLecname("ddd dddd dddddd");
+        obj.setCourse("ddddddddd ddddddd dddddd");
         contactlist.add(obj);
 
         return contactlist;

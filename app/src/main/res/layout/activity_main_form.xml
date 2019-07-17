@@ -23,12 +23,4 @@
         app:menu="@menu/activity_navigation_form_drawer"
         />
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigationView"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/bottomnavigation"
-        />
-
 </android.support.v4.widget.DrawerLayout>

@@ -14,24 +14,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 
-import com.example.jaanfdo.myfinalproject.AlertDialog.ActivityAlertDialog2;
 import com.example.jaanfdo.myfinalproject.Buckys.BuckyActivity;
-import com.example.jaanfdo.myfinalproject.Charts.HomeChartActivity;
-import com.example.jaanfdo.myfinalproject.DynamicsViews.DynamicViewActivity;
-import com.example.jaanfdo.myfinalproject.Employee.EmployeeHomeActivity;
-import com.example.jaanfdo.myfinalproject.ExpandableListView.ExpandableListViewActivity;
-import com.example.jaanfdo.myfinalproject.FilterListView.FilterListViewActivity;
-import com.example.jaanfdo.myfinalproject.Hero.HerosActivity;
-import com.example.jaanfdo.myfinalproject.Notification.NotificationActivity;
-import com.example.jaanfdo.myfinalproject.Search.SearchActivity;
-import com.example.jaanfdo.myfinalproject.SpinnerSearch.SpinnerSearchActivity;
 import com.example.jaanfdo.myfinalproject.Students.StudentsActivity;
-import com.example.jaanfdo.myfinalproject.TableView.TableViewActivity;
-import com.example.jaanfdo.myfinalproject.WebService.StudentActivity;
+import com.example.jaanfdo.myfinalproject.User.UsersActivity;
 
 public class MainForm extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -40,17 +26,9 @@ public class MainForm extends AppCompatActivity implements NavigationView.OnNavi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_form);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -63,7 +41,7 @@ public class MainForm extends AppCompatActivity implements NavigationView.OnNavi
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("News"));
         tabLayout.addTab(tabLayout.newTab().setText("Event"));
-        tabLayout.addTab(tabLayout.newTab().setText("Schedule"));
+        tabLayout.addTab(tabLayout.newTab().setText("ScheduleDB"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         viewPager = (ViewPager) findViewById(R.id.pager);
@@ -97,35 +75,6 @@ public class MainForm extends AppCompatActivity implements NavigationView.OnNavi
         ListView listViewItems3 = (ListView) findViewById(R.id.newslistview);
         listViewItems3.setAdapter(arrayAdapter3);*/
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigationView);
-        bottomNavigationView.setOnNavigationItemSelectedListener(
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    int id = item.getItemId();
-
-                    if (id == R.id.signup) {
-                        Intent intent1 = new Intent(getBaseContext(),SignUp.class);
-                        startActivity(intent1);
-                    } else if (id == R.id.login) {
-                        Intent intent1 = new Intent(getBaseContext(),Login.class);
-                        startActivity(intent1);
-                    }
-                    else if (id == R.id.notification) {
-                        Intent intent1 = new Intent(getBaseContext(),NotificationActivity.class);
-                        startActivity(intent1);
-                    }
-                    else if (id == R.id.service) {
-                        Intent intent1 = new Intent(getBaseContext(), StudentActivity.class);
-                        startActivity(intent1);
-                    }
-                    else if (id == R.id.chart) {
-                        Intent intent1 = new Intent(getBaseContext(), HomeChartActivity.class);
-                        startActivity(intent1);
-                    }
-                    return true;
-                }
-            });
     }
 
     @Override
@@ -140,7 +89,7 @@ public class MainForm extends AppCompatActivity implements NavigationView.OnNavi
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.navigation_form, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
@@ -152,32 +101,12 @@ public class MainForm extends AppCompatActivity implements NavigationView.OnNavi
             Intent intent1 = new Intent(this,Profile.class);
             startActivity(intent1);
         }
-        else if (id == R.id.searchicon) {
-            Intent intent1 = new Intent(this,SearchActivity.class);
+        else if (id == R.id.login) {
+            Intent intent1 = new Intent(this,Login.class);
             startActivity(intent1);
         }
-
-        else if (id == R.id.expandablelist) {
-            Intent intent1 = new Intent(this, ExpandableListViewActivity.class);
-            startActivity(intent1);
-        } else if (id == R.id.filterlist) {
-            Intent intent1 = new Intent(this, FilterListViewActivity.class);
-            startActivity(intent1);
-        } else if (id == R.id.spinnersearch) {
-            Intent intent1 = new Intent(this,SpinnerSearchActivity.class);
-            startActivity(intent1);
-        }
-
-        else if (id == R.id.alertdialog) {
-            Intent intent1 = new Intent(this,ActivityAlertDialog2.class);
-            startActivity(intent1);
-        }
-        else if (id == R.id.tableview) {
-            Intent intent1 = new Intent(this, TableViewActivity.class);
-            startActivity(intent1);
-        }
-        else if (id == R.id.dynamicviews) {
-            Intent intent1 = new Intent(this,DynamicViewActivity.class);
+        else if (id == R.id.signup) {
+            Intent intent1 = new Intent(this,SignUp.class);
             startActivity(intent1);
         }
         return super.onOptionsItemSelected(item);
@@ -205,20 +134,19 @@ public class MainForm extends AppCompatActivity implements NavigationView.OnNavi
             Intent intent1 = new Intent(this,TeacherAppointment.class);
             startActivity(intent1);
         }
+
+
+
         else if (id == R.id.bucky){
             Intent i = new Intent(this, BuckyActivity.class);
             startActivity(i);
         }
-        else if (id == R.id.employee){
-            Intent i = new Intent(this, EmployeeHomeActivity.class);
-            startActivity(i);
-        }
-        else if (id == R.id.Heros){
-            Intent i = new Intent(this, HerosActivity.class);
-            startActivity(i);
-        }
         else if (id == R.id.students){
             Intent i = new Intent(this, StudentsActivity.class);
+            startActivity(i);
+        }
+        else if (id == R.id.user){
+            Intent i = new Intent(this, UsersActivity.class);
             startActivity(i);
         }
 

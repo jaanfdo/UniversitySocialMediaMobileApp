@@ -40,17 +40,17 @@ public class EventFragment extends Fragment {
         EventsBL obj = null;
 
         obj = new EventsBL();
-        obj.setEventname("Topher");
-        obj.setDescription("aaaaaaaaaa");
+        obj.setEventname("Toppp pphee eer");
+        obj.setDescription("aaaaa aaaaa");
         contactlist.add(obj);
 
         obj = new EventsBL();
-        obj.setEventname("Bewosss");
-        obj.setDescription("sssssssssssssssssssss");
+        obj.setEventname("Beee eewo sss");
+        obj.setDescription("sssss sssssss ssss sssss");
         contactlist.add(obj);
 
         obj = new EventsBL();
-        obj.setEventname("Ruwaaa");
+        obj.setEventname("Ruu uuuu waaa");
         obj.setDescription("ssssssssssdddddddd");
         contactlist.add(obj);
 

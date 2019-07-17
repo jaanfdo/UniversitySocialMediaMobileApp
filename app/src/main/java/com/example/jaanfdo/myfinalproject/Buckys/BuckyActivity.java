@@ -12,9 +12,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.jaanfdo.myfinalproject.Employee.ViewEmployeeActivity;
-import com.example.jaanfdo.myfinalproject.Hero.HerosActivity;
-import com.example.jaanfdo.myfinalproject.Employee.EmployeeHomeActivity;
 import com.example.jaanfdo.myfinalproject.R;
 
 import java.util.ArrayList;
@@ -112,21 +109,6 @@ public class BuckyActivity extends AppCompatActivity {
         results.add(product);
 
         return results;
-    }
-
-    public void next(View view){
-        Intent i=new Intent(this, EmployeeHomeActivity.class);
-        startActivity(i);
-    }
-
-    public void nextList(View view){
-        Intent i=new Intent(this, ViewEmployeeActivity.class);
-        startActivity(i);
-    }
-
-    public void btnHero(View view){
-        Intent i = new Intent(this,HerosActivity.class);
-        startActivity(i);
     }
 
     public  void  btnAlert(View view){

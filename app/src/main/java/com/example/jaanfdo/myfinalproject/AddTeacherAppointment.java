@@ -14,7 +14,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.jaanfdo.myfinalproject.BusinessClass.TeacherAppointmentBL;
-import com.example.jaanfdo.myfinalproject.Database.Appointment;
+import com.example.jaanfdo.myfinalproject.Database.AppointmentDB;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -26,7 +26,7 @@ public class AddTeacherAppointment extends AppCompatActivity {
     EditText txtDate, txtTime, txtReason, txtLecturer;
     Spinner CourseSpinner;
     TextView AppointmentID;
-    Appointment db;
+    AppointmentDB db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,13 +91,13 @@ public class AddTeacherAppointment extends AppCompatActivity {
     };
 
     public void SaveSchedule(View view){
-        String course = CourseSpinner.getSelectedItem().toString();
-        String date = txtDate.getText().toString();
-        String time = txtTime.getText().toString();
-        String lecturer = txtLecturer.getText().toString();
-        String reason = txtReason.getText().toString();
-        TeacherAppointmentBL appointment = new TeacherAppointmentBL(course,date,time,lecturer,reason);
-        db.add(appointment);
+//        String course = CourseSpinner.getSelectedItem().toString();
+//        String date = txtDate.getText().toString();
+//        String time = txtTime.getText().toString();
+//        String lecturer = txtLecturer.getText().toString();
+//        String reason = txtReason.getText().toString();
+//        TeacherAppointmentBL appointment = new TeacherAppointmentBL(course,date,time,lecturer,reason);
+//        db.add(appointment);
 
         Toast.makeText(getApplicationContext(), "Record Added", Toast.LENGTH_SHORT).show();
     }

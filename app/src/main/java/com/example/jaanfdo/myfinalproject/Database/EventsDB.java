@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.jaanfdo.myfinalproject.BusinessClass.EventsBL;
+import com.example.jaanfdo.myfinalproject.Events;
 
 import java.util.ArrayList;
 
@@ -26,14 +27,22 @@ public class EventsDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("Create table " +TABLE_NAME+ "(id Text primary key autoincrement, event_name text not null, course Text not null, date DateTime not null,time Time not null, place Text not null, description Text)");
+        String CreateSql = "Create table " +TABLE_NAME+ " (id INTEGER PRIMARY KEY autoincrement, event_name text not null, course Text not null, date DateTime not null, time Time not null, place Text not null, description Text)";
+        sqLiteDatabase.execSQL(CreateSql);
+
+        String InsertSql = "INSERT INTO "+TABLE_NAME+" (event_name, course, date, time, place, description)VALUES"+
+                "('Angular','Bsc (Hon) in Softwar Enginering','2017-05-07', '13:35','Colombo',''),"+
+                "('Azure','Bsc (Hon) in Softwar Enginering','2017-05-07', '13:35','Colombo',''),"+
+                "('Google','Bsc (Hon) in Softwar Enginering','2017-05-07', '13:35','Colombo','')";
+        sqLiteDatabase.execSQL(InsertSql);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        sqLiteDatabase.execSQL(String.format("DROP_TABLE_IF_EXISTS", TABLE_NAME));
         onCreate(sqLiteDatabase);
     }
+
     public void add(EventsBL obj){
         ContentValues values = new ContentValues();
         values.put("event_name", obj.getEventname());
@@ -64,6 +73,21 @@ public class EventsDB extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("UPDATE " + TABLE_NAME + "SET " + values +" WHERE id=" + obj.getId() + ";");
         db.close();
+    }
+
+    public Cursor DisplayAll() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "SELECT * FROM " +TABLE_NAME, null);
+        return res;
+    }
+
+
+    public Cursor DisplayRecordByID(int id) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " +TABLE_NAME +" WHERE id = " + id, null);
+
+        return cursor;
     }
 
     /*public String DisplayAll(){
@@ -100,7 +124,7 @@ public class EventsDB extends SQLiteOpenHelper {
         return array_list;
     }
 
-    public String Display(Schedule schedule){
+    public String Display(ScheduleDB schedule){
         String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM" +TABLE_NAME+ "WHERE 1";
@@ -117,11 +141,5 @@ public class EventsDB extends SQLiteOpenHelper {
 
         }
         return dbString;
-    }
-
-    public Cursor getData(int id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from contacts where id="+id+"", null );
-        return res;
     }*/
 }

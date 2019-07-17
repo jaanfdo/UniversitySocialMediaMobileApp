@@ -79,7 +79,7 @@ public class MyDBHandler extends SQLiteOpenHelper{
         String query = "SELECT * FROM " +TABLE_PRODUCTS+ "";
 
         Cursor c = db.rawQuery(query, null);
-        c.moveToFirst();
+        //c.moveToFirst();
 
         /*while (c.moveToLast()){
             if (c.getString(c.getColumnIndex("productname"))!=null){

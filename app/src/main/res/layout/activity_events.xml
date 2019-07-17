@@ -32,9 +32,9 @@
             android:layout_height="wrap_content"
             android:background="#0066ff"
             android:textSize="18dp"
-            android:padding="15dp"
+            android:padding="10dp"
             android:layout_marginTop="15dp"
-            android:hint="Add Schedule"
+            android:hint="Add Event"
             android:id="@+id/btnSaveClassSchedule"
             android:onClick="addEvents"
             android:textColorHint="#fff"/>

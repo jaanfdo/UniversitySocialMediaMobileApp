@@ -41,17 +41,17 @@ public class NewsFragment extends Fragment {
 
         obj = new NewsBL();
         obj.setNews("Topher");
-        obj.setOwner("aaaaaaaaaa");
+        obj.setOwner("aaaa aaaaaa");
         contactlist.add(obj);
 
         obj = new NewsBL();
-        obj.setNews("Bewosss");
-        obj.setOwner("sssssssssssssssssssss");
+        obj.setNews("Bewo sss");
+        obj.setOwner("ssss sssss ssssss ssssss");
         contactlist.add(obj);
 
         obj = new NewsBL();
         obj.setNews("Ruwaaa");
-        obj.setOwner("ssssssssssdddddddd");
+        obj.setOwner("ssssss ssssddd ddddd");
         contactlist.add(obj);
 
         return contactlist;

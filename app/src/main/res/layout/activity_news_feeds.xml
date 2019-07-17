@@ -24,15 +24,13 @@
             android:maxLines="10"
             android:textColor="#fff"
             android:scrollbars="vertical" />
-
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#0066ff"
             android:textSize="18dp"
             android:padding="15dp"
             android:layout_marginTop="15dp"
-            android:layout_gravity="end"
             android:hint="Save"
             android:id="@+id/btnSaveNews"
             android:onClick="SaveNews"

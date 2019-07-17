@@ -11,21 +11,28 @@ public class TeacherAppointmentBL {
     private String time;
     private String lecturer;
     private String reason;
+    private String user;
 
-    public TeacherAppointmentBL(String course, String date, String time, String lecturer, String reason) {
+    public TeacherAppointmentBL(String course, String date, String time, String lecturer, String reason, String user) {
         this.course = course;
         this.date = date;
         this.time = time;
         this.lecturer = lecturer;
         this.reason = reason;
+        this.user = user;
     }
-    public TeacherAppointmentBL(String id, String course, String date, String time, String lecturer, String reason) {
+
+    public TeacherAppointmentBL() {
+    }
+
+    public TeacherAppointmentBL(String id, String course, String date, String time, String lecturer, String reason, String user) {
         this.id = id;
         this.course = course;
         this.date = date;
         this.time = time;
         this.lecturer = lecturer;
         this.reason = reason;
+        this.user = user;
     }
 
     public TeacherAppointmentBL(String id) {
@@ -80,5 +87,12 @@ public class TeacherAppointmentBL {
         this.reason = reason;
     }
 
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
 
 }

@@ -25,7 +25,13 @@ public class NewsDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("Create table " +  TABLE_NAME + " (id Text primary key autoincrement, news text not null, date DateTime not null,time Time not null, owner Text not null)");
+        sqLiteDatabase.execSQL("Create table " +  TABLE_NAME + " (id INTEGER PRIMARY KEY autoincrement, news text not null, date DateTime not null,time Time not null, owner Text not null)");
+
+        String InsertSql = "INSERT INTO "+TABLE_NAME+" (news, date, time, owner)VALUES"+
+                "('Angular','2017-05-07', '13:35','Jaan Fdo'),"+
+                "('Azure','2017-05-07', '13:35','Jaan Fdo'),"+
+                "('Google','2017-05-07', '13:35','Jaan Fdo')";
+        sqLiteDatabase.execSQL(InsertSql);
     }
 
     @Override
@@ -49,6 +55,12 @@ public class NewsDB extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME + "WHERE id=" + obj.getId() + ";");
         db.close();
+    }
+
+    public Cursor DisplayAll() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "SELECT * FROM " +TABLE_NAME, null );
+        return res;
     }
 
     /*public String DisplayAll(){
@@ -85,7 +97,7 @@ public class NewsDB extends SQLiteOpenHelper {
         return array_list;
     }
 
-    public String Display(Schedule schedule){
+    public String Display(ScheduleDB schedule){
         String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM" +TABLE_NAME+ "WHERE 1";
@@ -104,9 +116,4 @@ public class NewsDB extends SQLiteOpenHelper {
         return dbString;
     }*/
 
-    public Cursor getData(int id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from " + TABLE_NAME + " where id="+id+"", null );
-        return res;
-    }
 }
