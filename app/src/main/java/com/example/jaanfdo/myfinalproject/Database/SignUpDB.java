@@ -27,13 +27,12 @@ public class SignUpDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("Create table" +TABLE_NAME+ "" +
-                "(id Text primary key autoincrement, username text not null, password Text not null, email Text not null,unicode Time not null)");
+        sqLiteDatabase.execSQL("Create table " +TABLE_NAME+ "(id INTEGER primary key autoincrement, username text not null, password Text not null, email Text not null,unicode Time not null)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP_TABLE_IF_EXISTS" + TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
 

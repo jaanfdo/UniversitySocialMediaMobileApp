@@ -41,7 +41,7 @@ public class MainForm extends AppCompatActivity implements NavigationView.OnNavi
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("News"));
         tabLayout.addTab(tabLayout.newTab().setText("Event"));
-        tabLayout.addTab(tabLayout.newTab().setText("ScheduleDB"));
+        tabLayout.addTab(tabLayout.newTab().setText("Schedule"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         viewPager = (ViewPager) findViewById(R.id.pager);

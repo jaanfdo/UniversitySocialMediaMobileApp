@@ -12,24 +12,6 @@
         android:orientation="horizontal"
         android:padding="2dp">
         <Button
-            android:text="Home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button"
-            android:onClick="next" />
-        <Button
-            android:text="Emlpoyees"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnnextList"
-            android:onClick="nextList" />
-        <Button
-            android:text="Heros"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnHero"
-            android:onClick="btnHero" />
-        <Button
             android:text="Alert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

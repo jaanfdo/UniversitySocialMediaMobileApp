@@ -21,6 +21,7 @@ public class Events extends AppCompatActivity {
         setContentView(R.layout.activity_events);
 
         database = new EventsDB(this);
+        
         if(getSupportActionBar()!= null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);

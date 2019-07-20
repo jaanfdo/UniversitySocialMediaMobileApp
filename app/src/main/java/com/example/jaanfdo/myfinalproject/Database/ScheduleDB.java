@@ -36,7 +36,7 @@ public class ScheduleDB extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL(String.format("DROP_TABLE_IF_EXISTS", TABLE_NAME));
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
 
@@ -81,7 +81,6 @@ public class ScheduleDB extends SQLiteOpenHelper {
 
     public ArrayList<ScheduleBL> getAllSchedule() {
         ArrayList<ScheduleBL> array_list = new ArrayList<ScheduleBL>();
-
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c =  db.rawQuery( "select * from "+TABLE_NAME+"", null );

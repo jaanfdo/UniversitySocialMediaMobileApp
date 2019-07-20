@@ -25,6 +25,10 @@ public class MyDBHandler extends SQLiteOpenHelper{
                 COLUMN_PRODUCTSNAME + " TEXT " + "" +
                 ");";
         db.execSQL(query);
+
+        String InsertSql = "INSERT INTO "+TABLE_PRODUCTS+" (productname)VALUES"+
+                "('Angular'),('Type Script')";
+        db.execSQL(InsertSql);
     }
 
     @Override
@@ -34,12 +38,14 @@ public class MyDBHandler extends SQLiteOpenHelper{
 
     }
 
-    public void addProducts(Products products){
+    public long addProducts(Products products){
         ContentValues values = new ContentValues();
         values.put(COLUMN_PRODUCTSNAME, products.get_productname());
         SQLiteDatabase db = getWritableDatabase();
-        db.insert(TABLE_PRODUCTS, null, values);
+        long status = db.insert(TABLE_PRODUCTS, null, values);
         db.close();
+
+        return status;
     }
 
     public void deleteProducts (String productname){
@@ -74,21 +80,9 @@ public class MyDBHandler extends SQLiteOpenHelper{
     }
 
     public Cursor DisplayAllDetails(){
-        String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM " +TABLE_PRODUCTS+ "";
-
         Cursor c = db.rawQuery(query, null);
-        //c.moveToFirst();
-
-        /*while (c.moveToLast()){
-            if (c.getString(c.getColumnIndex("productname"))!=null){
-                dbString += c.getString(c.getColumnIndex("productname"));
-                dbString += "\n";
-            }
-            db.close();
-        }*/
-
         return c;
     }
 

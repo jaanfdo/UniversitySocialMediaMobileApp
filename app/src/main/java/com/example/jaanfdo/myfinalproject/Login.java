@@ -8,8 +8,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Login extends AppCompatActivity {
+import com.example.jaanfdo.myfinalproject.Buckys.MyDBHandler;
+import com.example.jaanfdo.myfinalproject.Database.SignUpDB;
 
+public class Login extends AppCompatActivity {
+    SignUpDB db;
     EditText username,password;
 
     @Override
@@ -17,6 +20,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        db = new SignUpDB(this, null, null, 1);
         if(getSupportActionBar()!= null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);

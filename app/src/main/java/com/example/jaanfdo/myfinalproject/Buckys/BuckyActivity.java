@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jaanfdo.myfinalproject.BusinessClass.NewsBL;
 import com.example.jaanfdo.myfinalproject.R;
 
 import java.util.ArrayList;
@@ -55,16 +56,16 @@ public class BuckyActivity extends AppCompatActivity {
     public void addButtonClicked(View v){
         String bucky = buckyInput.getText().toString();
         Products product = new Products(bucky);
-        dbHandler.addProducts(product);
-        //printDatabase();
-        getListData();
-        Toast.makeText(getApplicationContext(), "Record Added" + bucky, Toast.LENGTH_SHORT).show();
+        long status = dbHandler.addProducts(product);
+        if(status > 0){
+            getListData();
+            Toast.makeText(getApplicationContext(), "Record Added" + bucky, Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void deleteButtonClicked(View v){
         String inputText = buckyInput.getText().toString();
         dbHandler.deleteProducts(inputText);
-        //printDatabase();
         getListData();
         Toast.makeText(getApplicationContext(), "Record Deleted" + inputText, Toast.LENGTH_SHORT).show();
     }
@@ -77,36 +78,18 @@ public class BuckyActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Record Update" + inputText, Toast.LENGTH_SHORT).show();
     }
 
-    public void printDatabase(){
-        String dbString = dbHandler.databaseToString();
-        buckyInput.setText(dbString);
-        adapter.add(dbString);
-        adapter.notifyDataSetChanged();
-        buckyText.setText("");
-    }
-
     private ArrayList getListData() {
         ArrayList<Products> results = new ArrayList<Products>();
-        Cursor c = dbHandler.DisplayAllDetails();
-        String[] field = new String[]{c.getString(1)};
-        Products product = new Products();
-        product.set_productname(c.getString(1));
+        Cursor cursor = dbHandler.DisplayAllDetails();
 
-        /*String[] fromFieldNames = new String[]{c.getString(2),c.getString(3)};
-        int[] toVieIDs = new int[] {R.id.txtOwner, R.id.txtNews};
-        SimpleCursorAdapter cursorAdapter;
-        cursorAdapter = new SimpleCursorAdapter(getBaseContext(), R.layout.activity_class_schedule,c,fromFieldNames,toVieIDs,0);
-        ListView mylist = (ListView) findViewById(R.id.schedulelistview);
-        mylist.setAdapter(cursorAdapter);*/
-
-        /*newsData.setOwner("Bsc (Hon) in Softwar Eniginering");
-        newsData.setEventname("Dance of Democracy");
-        newsData.setCourse("Bsc (Hon) in Softwar Eniginering");
-        newsData.setDescription("Bsc (Hon) in Softwar Eniginering");
-        newsData.setDate("May 26, 2013");
-        newsData.setTime("13:35");
-        newsData.setPlace("Park Plaza Hotel");*/
-        results.add(product);
+        if (cursor.moveToFirst()) {
+            do {
+                Products product = new Products();
+                product.set_id(cursor.getInt(0));
+                product.set_productname(cursor.getString(1));
+                results.add(product);
+            } while (cursor.moveToNext());
+        }
 
         return results;
     }
@@ -114,5 +97,14 @@ public class BuckyActivity extends AppCompatActivity {
     public  void  btnAlert(View view){
         Intent i = new Intent(this, AlertMessage.class);
         startActivity(i);
+    }
+
+
+    public void printDatabase(){
+        String dbString = dbHandler.databaseToString();
+        buckyInput.setText(dbString);
+        adapter.add(dbString);
+        adapter.notifyDataSetChanged();
+        buckyText.setText("");
     }
 }

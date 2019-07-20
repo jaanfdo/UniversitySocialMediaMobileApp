@@ -90,7 +90,6 @@ public class ClassSchedule extends AppCompatActivity {
 //        startActivity(i);
     }
 
-
     private void populateListView(){
         Cursor c = null;
         String[] fromFieldNames = new String[]{c.getString(2),c.getString(3)};
