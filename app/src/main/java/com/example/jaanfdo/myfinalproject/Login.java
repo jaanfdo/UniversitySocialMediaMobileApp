@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.jaanfdo.myfinalproject.Buckys.MyDBHandler;
 import com.example.jaanfdo.myfinalproject.Database.SignUpDB;
 
 public class Login extends AppCompatActivity {

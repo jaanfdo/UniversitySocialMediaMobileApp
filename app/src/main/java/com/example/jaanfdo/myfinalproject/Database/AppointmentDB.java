@@ -78,7 +78,7 @@ public class AppointmentDB extends SQLiteOpenHelper {
         ArrayList<TeacherAppointmentBL> array_list = new ArrayList<TeacherAppointmentBL>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c =  db.rawQuery( "select * from "+TABLE_NAME+"", null );
+        Cursor c =  db.rawQuery( "select * from "+TABLE_NAME, null );
         c.moveToFirst();
 
         while(c.isAfterLast() == false){

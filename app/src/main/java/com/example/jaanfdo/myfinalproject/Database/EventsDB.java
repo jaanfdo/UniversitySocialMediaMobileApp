@@ -83,10 +83,8 @@ public class EventsDB extends SQLiteOpenHelper {
 
 
     public Cursor DisplayRecordByID(int id) {
-
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " +TABLE_NAME +" WHERE id = " + id, null);
-
         return cursor;
     }
 

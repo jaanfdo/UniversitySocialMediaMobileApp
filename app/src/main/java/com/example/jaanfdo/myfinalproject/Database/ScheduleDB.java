@@ -83,7 +83,7 @@ public class ScheduleDB extends SQLiteOpenHelper {
         ArrayList<ScheduleBL> array_list = new ArrayList<ScheduleBL>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c =  db.rawQuery( "select * from "+TABLE_NAME+"", null );
+        Cursor c =  db.rawQuery( "select * from "+TABLE_NAME, null );
         c.moveToFirst();
 
         while(c.isAfterLast() == false){

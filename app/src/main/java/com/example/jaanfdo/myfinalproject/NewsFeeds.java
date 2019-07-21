@@ -40,6 +40,13 @@ public class NewsFeeds extends AppCompatActivity {
         lv.setAdapter(new CustomListAdapter_News(this, detail));
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()== android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
+    }
+
     private ArrayList getListData() {
         ArrayList<NewsBL> results = new ArrayList<NewsBL>();
         Cursor cursor = db.DisplayAll();

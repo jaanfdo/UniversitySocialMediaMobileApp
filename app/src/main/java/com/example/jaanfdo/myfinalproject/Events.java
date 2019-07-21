@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
@@ -30,6 +31,13 @@ public class Events extends AppCompatActivity {
         ArrayList detail = getListData();
         final ListView lv = (ListView) findViewById(R.id.eventlistview);
         lv.setAdapter(new CustomListAdapter_Events(this, detail));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()== android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
     }
 
     private ArrayList getListData() {

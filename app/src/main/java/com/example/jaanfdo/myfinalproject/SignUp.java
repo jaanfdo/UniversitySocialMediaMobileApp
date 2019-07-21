@@ -34,8 +34,13 @@ public class SignUp extends AppCompatActivity {
         Password = (EditText) findViewById(R.id.txtPassword);
         Email = (EditText) findViewById(R.id.txtEmail);
         UniCode = (EditText) findViewById(R.id.txtUniCode);
+    }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()== android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
     }
 
     public void SignUp(View view){

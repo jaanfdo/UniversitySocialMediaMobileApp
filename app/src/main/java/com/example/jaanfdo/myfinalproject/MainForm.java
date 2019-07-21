@@ -15,9 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.jaanfdo.myfinalproject.Buckys.BuckyActivity;
-import com.example.jaanfdo.myfinalproject.Students.StudentsActivity;
-import com.example.jaanfdo.myfinalproject.User.UsersActivity;
 
 public class MainForm extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -133,21 +130,6 @@ public class MainForm extends AppCompatActivity implements NavigationView.OnNavi
         } else if (id == R.id.teacherschedule) {
             Intent intent1 = new Intent(this,TeacherAppointment.class);
             startActivity(intent1);
-        }
-
-
-
-        else if (id == R.id.bucky){
-            Intent i = new Intent(this, BuckyActivity.class);
-            startActivity(i);
-        }
-        else if (id == R.id.students){
-            Intent i = new Intent(this, StudentsActivity.class);
-            startActivity(i);
-        }
-        else if (id == R.id.user){
-            Intent i = new Intent(this, UsersActivity.class);
-            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
