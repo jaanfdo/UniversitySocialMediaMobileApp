@@ -16,9 +16,9 @@ import java.util.ArrayList;
  */
 
 public class EventsDB extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "SchoolISS.db";
-    private static final String TABLE_NAME = "events";
+    private static final int DATABASE_VERSION = 2;
+    private static final String DATABASE_NAME = "SchoolInfoSS.db";
+    private static final String TABLE_NAME = "tblEvents";
 
 
     public EventsDB(Context context) {
@@ -58,7 +58,7 @@ public class EventsDB extends SQLiteOpenHelper {
 
     public void delete (EventsBL obj){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_NAME + "WHERE id=" + obj.getId() + ";");
+        db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE id=" + obj.getId() + ";");
         db.close();
     }
 

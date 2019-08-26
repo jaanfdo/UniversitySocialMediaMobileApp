@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jaanfdo.myfinalproject.BusinessClass.ScheduleBL;
+import com.example.jaanfdo.myfinalproject.CustomAdapter.CustomListAdapter_News;
 import com.example.jaanfdo.myfinalproject.CustomAdapter.CustomListAdapter_Schedule;
 import com.example.jaanfdo.myfinalproject.Database.ScheduleDB;
 
@@ -29,8 +30,8 @@ import java.util.List;
 public class ClassSchedule extends AppCompatActivity {
 
     Button button;
-    String [] listarray = {"Samsung", "Nokia", "Apple", "Microsoft", "Oppo","HTC","Sony","Lenova","Asus","Pixel"};
-    ArrayAdapter adapter;
+    //String [] listarray = {"Samsung", "Nokia", "Apple", "Microsoft", "Oppo","HTC","Sony","Lenova","Asus","Pixel"};
+    //ArrayAdapter adapter;
     ListView lv;
     ScheduleDB db;
     Spinner CourseSpinner;
@@ -40,23 +41,14 @@ public class ClassSchedule extends AppCompatActivity {
         setContentView(R.layout.activity_class_schedule);
 
         db = new ScheduleDB(this);
-
         if(getSupportActionBar()!= null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        //readRecords();
-        //populateListView();
-
-//        adapter = new ArrayAdapter<String>(this, R.layout.activity_class_schedule, listarray);
-//        lv = (ListView) findViewById(R.id.schedulelistview);
-//        lv.setAdapter(adapter);
-
-        ArrayList detail = db.getAllSchedule();
+        ArrayList detail = getListData();
         final ListView lv = (ListView) findViewById(R.id.schedulelistview);
         lv.setAdapter(new CustomListAdapter_Schedule(this, detail));
-
 
 //        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
@@ -85,6 +77,30 @@ public class ClassSchedule extends AppCompatActivity {
           registerForContextMenu(lv);
     }
 
+    private ArrayList getListData() {
+        ArrayList<ScheduleBL> results = new ArrayList<ScheduleBL>();
+        Cursor c = db.DisplayAll();
+
+        if(c.moveToFirst()) {
+            while (c.isAfterLast() == false) {
+                ScheduleBL detail = new ScheduleBL();
+
+                detail.setCourse(c.getString(c.getColumnIndex("course")));
+                detail.setSubject(c.getString(c.getColumnIndex("subjects")));
+                detail.setDate(c.getString(c.getColumnIndex("date")));
+                detail.setTime(c.getString(c.getColumnIndex("time")));
+                detail.setClassfloor(c.getString(c.getColumnIndex("class_floor")));
+                detail.setClassno(c.getString(c.getColumnIndex("class_no")));
+                detail.setLecname(c.getString(c.getColumnIndex("lecturer")));
+
+                results.add(detail);
+                c.moveToNext();
+            }
+        }
+
+        return results;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()== android.R.id.home)
@@ -96,26 +112,6 @@ public class ClassSchedule extends AppCompatActivity {
         Add(view);
 //        Intent i = new Intent(this, AddClassSchedule.class);
 //        startActivity(i);
-    }
-
-    private void populateListView(){
-        Cursor c = null;
-        String[] fromFieldNames = new String[]{c.getString(2),c.getString(3)};
-        int[] toVieIDs = new int[] {R.id.textView, R.id.textView2};
-        SimpleCursorAdapter cursorAdapter;
-        cursorAdapter = new SimpleCursorAdapter(getBaseContext(), R.layout.activity_class_schedule,c,fromFieldNames,toVieIDs,0);
-        ListView mylist = (ListView) findViewById(R.id.schedulelistview);
-        mylist.setAdapter(cursorAdapter);
-    }
-
-    public void readRecords() {
-//        List<ScheduleBL> schedule = db.DisplayAllDetails();
-//
-//        if (schedule.size() > 0) {
-//            ListView listView = (ListView) findViewById(R.id.schedulelistview);
-//            ScheduleAdapter adapter = new ScheduleAdapter(schedule);
-//            listView.setAdapter(adapter);
-//        }
     }
 
     public void Add(View view){
@@ -202,6 +198,49 @@ public class ClassSchedule extends AppCompatActivity {
             return listViewItem;
         }
     }
+
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    private void populateListView(){
+//        Cursor c = null;
+//        String[] fromFieldNames = new String[]{c.getString(2),c.getString(3)};
+//        int[] toVieIDs = new int[] {R.id.textView, R.id.textView2};
+//        SimpleCursorAdapter cursorAdapter;
+//        cursorAdapter = new SimpleCursorAdapter(getBaseContext(), R.layout.activity_class_schedule,c,fromFieldNames,toVieIDs,0);
+//        ListView mylist = (ListView) findViewById(R.id.schedulelistview);
+//        mylist.setAdapter(cursorAdapter);
+//    }
+
+
+//    public void readRecords() {
+//        List<ScheduleBL> schedule = db.DisplayAllDetails();
+//
+//        if (schedule.size() > 0) {
+//            ListView listView = (ListView) findViewById(R.id.schedulelistview);
+//            ScheduleAdapter adapter = new ScheduleAdapter(schedule);
+//            listView.setAdapter(adapter);
+//        }
+//    }
+
+//readRecords();
+//populateListView();
+
+//        adapter = new ArrayAdapter<String>(this, R.layout.activity_class_schedule, listarray);
+//        lv = (ListView) findViewById(R.id.schedulelistview);
+//        lv.setAdapter(adapter);

@@ -16,9 +16,9 @@ import java.util.ArrayList;
 
 public class SignUpDB extends SQLiteOpenHelper {
 
-    private static int DATABASE_VERSION = 1;
-    private static   String DATABASE_NAME = "SchoolISS.db";
-    public  static   String TABLE_NAME = "signup";
+    private static int DATABASE_VERSION = 2;
+    private static   String DATABASE_NAME = "SchoolInfoSS.db";
+    public  static   String TABLE_NAME = "tblSignup";
 
 
     public SignUpDB(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {

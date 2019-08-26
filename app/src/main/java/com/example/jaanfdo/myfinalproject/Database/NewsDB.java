@@ -8,19 +8,21 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.jaanfdo.myfinalproject.BusinessClass.EventsBL;
 import com.example.jaanfdo.myfinalproject.BusinessClass.NewsBL;
+import com.example.jaanfdo.myfinalproject.NewsFragment;
+
+import java.util.ArrayList;
 
 /**
  * Created by jaanfdo on 6/28/2017.
  */
 
 public class NewsDB extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "SchoolISS.db";
-    private static final String TABLE_NAME = "news";
+    private static final int DATABASE_VERSION = 2;
+    private static final String DATABASE_NAME = "SchoolInfoSS.db";
+    private static final String TABLE_NAME = "tblNews";
 
     public NewsDB(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-
     }
 
     @Override
@@ -53,15 +55,34 @@ public class NewsDB extends SQLiteOpenHelper {
 
     public void delete (EventsBL obj){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_NAME + "WHERE id=" + obj.getId() + ";");
+        db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE id=" + obj.getId() + ";");
         db.close();
     }
 
     public Cursor DisplayAll() {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "SELECT * FROM " +TABLE_NAME, null );
-        return res;
+        Cursor cursor =  db.rawQuery( "SELECT * FROM " +TABLE_NAME, null );
+        return cursor;
     }
+
+    public Cursor DisplayRecordByID(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " +TABLE_NAME +" WHERE id = " + id, null);
+        return cursor;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /*public String DisplayAll(){
         String dbString = "";

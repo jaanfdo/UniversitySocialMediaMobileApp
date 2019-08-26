@@ -16,9 +16,9 @@ import java.util.List;
  */
 
 public class ScheduleDB extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "SchoolISS.db";
-    private static final String TABLE_NAME = "schedule";
+    private static final int DATABASE_VERSION = 2;
+    private static final String DATABASE_NAME = "SchoolInfoSS.db";
+    private static final String TABLE_NAME = "tblSchedule";
 
     public ScheduleDB(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -60,7 +60,7 @@ public class ScheduleDB extends SQLiteOpenHelper {
     public void delete (ScheduleBL schedule){
         ContentValues values = new ContentValues();
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_NAME + "WHERE id=" +schedule.getId()+ ";");
+        db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE id=" +schedule.getId()+ ";");
         db.close();
     }
 
@@ -75,34 +75,23 @@ public class ScheduleDB extends SQLiteOpenHelper {
         values.put("lecturer", schedule.getLecname());
 
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("UPDATE " + TABLE_NAME + "SET " + values + " WHERE id=" +schedule.getId()+ ";");
+        db.execSQL("UPDATE " + TABLE_NAME + " SET " + values + " WHERE id=" +schedule.getId()+ ";");
         db.close();
     }
 
-    public ArrayList<ScheduleBL> getAllSchedule() {
-        ArrayList<ScheduleBL> array_list = new ArrayList<ScheduleBL>();
-
+    public Cursor DisplayAll() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c =  db.rawQuery( "select * from "+TABLE_NAME, null );
-        c.moveToFirst();
-
-        while(c.isAfterLast() == false){
-            ScheduleBL detail = new ScheduleBL();
-
-            detail.setCourse(c.getString(c.getColumnIndex("course")));
-            detail.setSubject(c.getString(c.getColumnIndex("subjects")));
-            detail.setDate(c.getString(c.getColumnIndex("date")));
-            detail.setTime(c.getString(c.getColumnIndex("time")));
-            detail.setClassfloor(c.getString(c.getColumnIndex("class_floor")));
-            detail.setClassno(c.getString(c.getColumnIndex("class_no")));
-            detail.setLecname(c.getString(c.getColumnIndex("lecturer")));
-
-            array_list.add(detail);
-
-            c.moveToNext();
-        }
-        return array_list;
+        return c;
     }
+
+    public Cursor DisplayRecordByID(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " +TABLE_NAME +" WHERE id = " + id, null);
+        return cursor;
+    }
+
+
 
 //    public String Display(ScheduleBL schedule){
 //        String dbString = "";

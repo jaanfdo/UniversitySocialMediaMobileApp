@@ -18,18 +18,6 @@
             android:id="@+id/teacherschedule"
             android:icon="@drawable/ic_menu_manage"
             android:title="Teachers Schedule" />
-        <item
-            android:id="@+id/bucky"
-            android:icon="@drawable/ic_menu_send"
-            android:title="Bucky Home" />
-        <item
-            android:id="@+id/students"
-            android:icon="@drawable/ic_menu_send"
-            android:title="Students" />
-        <item
-            android:id="@+id/user"
-            android:icon="@drawable/ic_menu_send"
-            android:title="User" />
     </group>
 
 

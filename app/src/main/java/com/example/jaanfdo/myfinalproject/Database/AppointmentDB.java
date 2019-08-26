@@ -16,9 +16,9 @@ import java.util.ArrayList;
  */
 
 public class AppointmentDB extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "SchoolISS.db";
-    private static final String TABLE_NAME = "appointment";
+    private static final int DATABASE_VERSION = 2;
+    private static final String DATABASE_NAME = "SchoolInfoSS.db";
+    private static final String TABLE_NAME = "tblAppointment";
 
     public AppointmentDB(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -57,7 +57,7 @@ public class AppointmentDB extends SQLiteOpenHelper {
 
     public void delete (TeacherAppointmentBL TAppointment){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_NAME + "WHERE id=" +TAppointment.getId()+ ";");
+        db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE id=" +TAppointment.getId()+ ";");
         db.close();
     }
 
@@ -70,33 +70,24 @@ public class AppointmentDB extends SQLiteOpenHelper {
         values.put("reason", TAppointment.getReason());
 
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("UPDATE " + TABLE_NAME + "SET " + values + " WHERE id=" +TAppointment.getId()+ ";");
+        db.execSQL("UPDATE " + TABLE_NAME + " SET " + values + " WHERE id=" +TAppointment.getId()+ ";");
         db.close();
     }
 
-    public ArrayList<TeacherAppointmentBL> getAllAppointment() {
-        ArrayList<TeacherAppointmentBL> array_list = new ArrayList<TeacherAppointmentBL>();
-
+    public Cursor DisplayAll() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c =  db.rawQuery( "select * from "+TABLE_NAME, null );
-        c.moveToFirst();
-
-        while(c.isAfterLast() == false){
-            TeacherAppointmentBL detail = new TeacherAppointmentBL();
-
-            detail.setCourse(c.getString(c.getColumnIndex("course")));
-            detail.setLecturer(c.getString(c.getColumnIndex("lecturer")));
-            detail.setDate(c.getString(c.getColumnIndex("date")));
-            detail.setTime(c.getString(c.getColumnIndex("time")));
-            detail.setReason(c.getString(c.getColumnIndex("reason")));
-            detail.setUser(c.getString(c.getColumnIndex("user")));
-
-            array_list.add(detail);
-
-            c.moveToNext();
-        }
-        return array_list;
+        return c;
     }
+    public Cursor DisplayRecordByID(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " +TABLE_NAME +" WHERE id = " + id, null);
+        return cursor;
+    }
+
+
+
+
 
 //    public Cursor DisplayAllDetails(){
 //        String dbString = "";
