@@ -128,8 +128,8 @@ public class AddEvents extends AppCompatActivity {
                 String places = place.getText().toString();
                 String descriptions = description.getText().toString();*/
                 //EventsBL obj = new EventsBL(eventname,course,date,time,places,descriptions);
-                EventsBL obj = new EventsBL("Dance","Bsc(Hon) in SE","May 26, 2013" , "13:35","Negombo","");
-                db.add(obj);
+                //EventsBL obj = new EventsBL("Dance","Bsc(Hon) in SE","May 26, 2013" , "13:35","Negombo","");
+                //db.add(obj);
 
                 Toast.makeText(getApplicationContext(), "Record Added", Toast.LENGTH_SHORT).show();
             }
@@ -145,10 +145,10 @@ public class AddEvents extends AppCompatActivity {
         String descriptions = description.getText().toString();
         /*EventsBL obj = new EventsBL(eventname,course,date,time,places,descriptions);
         db.add(obj);*/
-        EventsBL obj = new EventsBL("Dance","Bsc(Hon) in SE","May 26, 2013" , "13:35","Negombo","");
-        db.add(obj);
+        //EventsBL obj = new EventsBL("Dance","Bsc(Hon) in SE","May 26, 2013" , "13:35","Negombo","");
+        //db.add(obj);
 
-        Toast.makeText(getApplicationContext(), "Record Added", Toast.LENGTH_SHORT).show();
-        /*Toast.makeText(getApplicationContext(), course + " " + date + " " + time + "Record Updated", Toast.LENGTH_SHORT).show();*/
+        //Toast.makeText(getApplicationContext(), "Record Added", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), course + " " + date + " " + time + "Record Updated", Toast.LENGTH_SHORT).show();
     }
 }

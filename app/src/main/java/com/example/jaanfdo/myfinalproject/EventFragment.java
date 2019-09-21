@@ -12,10 +12,22 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.jaanfdo.myfinalproject.BusinessClass.EventsBL;
+import com.example.jaanfdo.myfinalproject.BusinessClass.ScheduleBL;
 import com.example.jaanfdo.myfinalproject.CustomAdapter.CustomListAdapter_Events;
 import com.example.jaanfdo.myfinalproject.Database.EventsDB;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -25,15 +37,18 @@ import java.util.ArrayList;
 
 public class EventFragment extends Fragment {
     EventsDB db;
+    ListView lv;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_event_fragment, container, false);
         db = new EventsDB(this.getContext());
 
-        ArrayList detail = getListData();
-        final ListView lv = (ListView) view.findViewById(R.id.eventlistview);
-        lv.setAdapter(new ListviewContactAdapter(getActivity(), detail));
+       // ArrayList detail =
+         ListData();
+        lv = (ListView) view.findViewById(R.id.eventlistview);
+        //lv.setAdapter(new ListviewContactAdapter(getActivity(), detail));
 
         return view;
     }
@@ -59,6 +74,59 @@ public class EventFragment extends Fragment {
 
         return results;
     }
+
+    public void ListData(){
+        final ArrayList<EventsBL> results = new ArrayList<EventsBL>();
+        String URL = "http://192.168.1.3:1234/AndroidPHP/server3.php?Action=viewEvents";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            System.out.println("Response : " + response);
+                            //JSONObject jsonObject = new JSONObject(response);
+                            //System.out.println("List : " + jsonObject);
+
+                            JSONArray dataArray = new JSONArray(response);
+                            for (int i = 0; i < dataArray.length(); i++) {
+                                //System.out.println("JSONObject : " + dataArray);
+
+                                JSONObject dataobj = dataArray.getJSONObject(i);
+                                //System.out.println("JSONObject 2 : " + dataobj);
+
+                                EventsBL detail = new EventsBL();
+                                detail.setId(dataobj.getString("id"));
+                                detail.setEventname(dataobj.getString("eventname"));
+                                detail.setCourse(dataobj.getString("course"));
+                                detail.setDate(dataobj.getString("date"));
+                                detail.setTime(dataobj.getString("time"));
+                                detail.setPlace(dataobj.getString("place"));
+
+                                results.add(detail);
+
+                            }
+
+                            System.out.println("ArrayList ScheduleBL : " + results);
+                            lv.setAdapter(new ListviewContactAdapter(getActivity(), results));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        // request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this.getContext());
+        requestQueue.add(stringRequest);
+    }
+
+
 }
 
 class ListviewContactAdapter extends BaseAdapter {

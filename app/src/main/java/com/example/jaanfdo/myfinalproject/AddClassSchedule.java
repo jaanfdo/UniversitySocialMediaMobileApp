@@ -127,37 +127,37 @@ public class AddClassSchedule extends AppCompatActivity {
 
 
     public void SaveSchedule(View view){
-        String course = CourseSpinner.getSelectedItem().toString();
-        String subject = txtSubject.getText().toString();
-        String date = txtDate.getText().toString();
-        String time = txtTime.getText().toString();
-        String classno = txtClassNo.getText().toString();
-        String classfloor = txtClassFloor.getText().toString();
-        String lecname = txtLecName.getText().toString();
-
-        ScheduleBL schedule = new ScheduleBL(course, subject,date,time,classfloor,classno,lecname);
-        db.create(schedule);
+//        String course = CourseSpinner.getSelectedItem().toString();
+//        String subject = txtSubject.getText().toString();
+//        String date = txtDate.getText().toString();
+//        String time = txtTime.getText().toString();
+//        String classno = txtClassNo.getText().toString();
+//        String classfloor = txtClassFloor.getText().toString();
+//        String lecname = txtLecName.getText().toString();
+//
+//        ScheduleBL schedule = new ScheduleBL(course, subject,date,time,classfloor,classno,lecname);
+//        db.create(schedule);
 
         Toast.makeText(getApplicationContext(), "Record Added", Toast.LENGTH_SHORT).show();
     }
     public void UpdateSchedule(View view){
-        String id = ShceduleID.getText().toString();
-        String course = CourseSpinner.getSelectedItem().toString();
-        String subject = txtSubject.getText().toString();
-        String date = txtDate.getText().toString();
-        String time = txtTime.getText().toString();
-        String classno = txtClassNo.getText().toString();
-        String classfloor = txtClassFloor.getText().toString();
-        String lecname = txtLecName.getText().toString();
-        ScheduleBL schedule = new ScheduleBL(id,course, subject,date,time,classfloor,classno,lecname);
-        db.update(schedule);
+//        String id = ShceduleID.getText().toString();
+//        String course = CourseSpinner.getSelectedItem().toString();
+//        String subject = txtSubject.getText().toString();
+//        String date = txtDate.getText().toString();
+//        String time = txtTime.getText().toString();
+//        String classno = txtClassNo.getText().toString();
+//        String classfloor = txtClassFloor.getText().toString();
+//        String lecname = txtLecName.getText().toString();
+//        ScheduleBL schedule = new ScheduleBL(id,course, subject,date,time,classfloor,classno,lecname);
+//        db.update(schedule);
 
         Toast.makeText(getApplicationContext(), "Record Updated" , Toast.LENGTH_SHORT).show();
     }
     public void DeleteSchedule(View view) {
-        String id = ShceduleID.getText().toString();
-        ScheduleBL schedule = new ScheduleBL(id);
-        db.delete(schedule);
+//        String id = ShceduleID.getText().toString();
+//        ScheduleBL schedule = new ScheduleBL(id);
+//        db.delete(schedule);
 
 
         Toast.makeText(getApplicationContext(), "Record Deleted", Toast.LENGTH_SHORT).show();

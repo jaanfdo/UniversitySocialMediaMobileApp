@@ -6,10 +6,13 @@ import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,10 +22,20 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.jaanfdo.myfinalproject.BusinessClass.ScheduleBL;
 import com.example.jaanfdo.myfinalproject.CustomAdapter.CustomListAdapter_News;
 import com.example.jaanfdo.myfinalproject.CustomAdapter.CustomListAdapter_Schedule;
 import com.example.jaanfdo.myfinalproject.Database.ScheduleDB;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,40 +53,59 @@ public class ClassSchedule extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class_schedule);
 
-        db = new ScheduleDB(this);
+        //db = new ScheduleDB(this);
         if(getSupportActionBar()!= null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        ArrayList detail = getListData();
-        final ListView lv = (ListView) findViewById(R.id.schedulelistview);
-        lv.setAdapter(new CustomListAdapter_Schedule(this, detail));
+        //ArrayList detail = getListData();
+        ListData();
+        lv = (ListView) findViewById(R.id.schedulelistview);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View convertView, int i, long l) {
+                ViewHolder holder = null;
+                Log.v("ConvertView", String.valueOf(i));
 
-//        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                int id_To_Search = i + 1;
+                if (convertView == null) {
+                    LayoutInflater vi = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    convertView = vi.inflate(R.layout.customlist_adapter_schedule, null);
+
+                    holder = new ViewHolder();
+                    String val1 = convertView.findViewById(R.id.view1).toString();
+                    String val2 = convertView.findViewById(R.id.view2).toString();
+                    convertView.setTag(holder);
+
+                    Toast.makeText(ClassSchedule.this, "Name: " + val1, Toast.LENGTH_LONG).show();
+
+                } else {
+                    holder = (ViewHolder) convertView.getTag();
+                }
+
+
+                //                int id_To_Search = i + 1;
+//                String selectedItem = (String) adapterView.getItemAtPosition(i);
 //
 //                Bundle dataBundle = new Bundle();
 //                dataBundle.putInt("id", id_To_Search);
 //
-//                Toast.makeText(ClassSchedule.this, "Click List Item ", Toast.LENGTH_SHORT).show();
-//                //Intent intent = new Intent(getApplicationContext(), AddClassSchedule.class);
+//                Toast.makeText(ClassSchedule.this, "Click List Item " + i  + " - " + selectedItem.toString(), Toast.LENGTH_SHORT).show();
+                //Intent intent = new Intent(getApplicationContext(), AddClassSchedule.class);
+
+//                intent.putExtras(dataBundle);
+//                startActivity(intent);
 //
-////                intent.putExtras(dataBundle);
-////                startActivity(intent);
-////
-////                Bundle passdata = new Bundle();
-////                Cursor listCursor = (Cursor) arg0.getItemAtPosition(arg2);
-////                int nameId = listCursor.getInt(listCursor
-////                        .getColumnIndex(helper_ob.KEY_ID));
-////                passdata.putInt("keyid", nameId);
-////                Intent passIntent = new Intent(this, EditActivity.class);
-////                passIntent.putExtras(passdata);
-////                startActivity(passIntent);
-//           }
-//        });
+//                Bundle passdata = new Bundle();
+//                Cursor listCursor = (Cursor) arg0.getItemAtPosition(arg2);
+//                int nameId = listCursor.getInt(listCursor
+//                        .getColumnIndex(helper_ob.KEY_ID));
+//                passdata.putInt("keyid", nameId);
+//                Intent passIntent = new Intent(this, EditActivity.class);
+//                passIntent.putExtras(passdata);
+//                startActivity(passIntent);
+           }
+        });
           registerForContextMenu(lv);
     }
 
@@ -99,6 +131,60 @@ public class ClassSchedule extends AppCompatActivity {
         }
 
         return results;
+    }
+
+    public void ListData(){
+        final ArrayList<ScheduleBL> results = new ArrayList<ScheduleBL>();
+        String URL = "http://192.168.1.3:1234/AndroidPHP/server3.php?Action=viewSchedule";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            System.out.println("Response : " + response);
+                            //JSONObject jsonObject = new JSONObject(response);
+                            //System.out.println("List : " + jsonObject);
+
+                            JSONArray dataArray = new JSONArray(response);
+                            for (int i = 0; i < dataArray.length(); i++) {
+                                //System.out.println("JSONObject : " + dataArray);
+
+                                JSONObject dataobj = dataArray.getJSONObject(i);
+                                //System.out.println("JSONObject 2 : " + dataobj);
+
+                                ScheduleBL detail = new ScheduleBL();
+
+                                detail.setId(dataobj.getString("id"));
+                                detail.setCourse(dataobj.getString("course"));
+                                detail.setSubject(dataobj.getString("subjects"));
+                                detail.setDate(dataobj.getString("date"));
+                                detail.setTime(dataobj.getString("time"));
+                                detail.setClassfloor(dataobj.getString("class_floor"));
+                                detail.setClassno(dataobj.getString("class_no"));
+                                detail.setLecname(dataobj.getString("lecturer"));
+
+                                results.add(detail);
+
+                            }
+
+                            System.out.println("ArrayList ScheduleBL : " + results);
+                            lv.setAdapter(new CustomListAdapter_Schedule(getApplicationContext(), results));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        // request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this.getApplicationContext());
+        requestQueue.add(stringRequest);
     }
 
     @Override
@@ -199,6 +285,10 @@ public class ClassSchedule extends AppCompatActivity {
         }
     }
 
+    private class ViewHolder {
+        TextView textView;
+        Button button;
+    }
 }
 
 

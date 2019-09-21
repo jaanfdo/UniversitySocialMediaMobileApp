@@ -110,21 +110,21 @@ public class AddTeacherAppointment extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Record Added", Toast.LENGTH_SHORT).show();
     }
     public void UpdateSchedule(View view){
-        String id = AppointmentID.getText().toString();
-        String course = CourseSpinner.getSelectedItem().toString();
-        String date = txtDate.getText().toString();
-        String time = txtTime.getText().toString();
-        String lecturer = txtLecturer.getText().toString();
-        String reason = txtReason.getText().toString();
-        TeacherAppointmentBL appointment = new TeacherAppointmentBL(id,course,date,time,lecturer,reason);
-        db.update(appointment);
+//        String id = AppointmentID.getText().toString();
+//        String course = CourseSpinner.getSelectedItem().toString();
+//        String date = txtDate.getText().toString();
+//        String time = txtTime.getText().toString();
+//        String lecturer = txtLecturer.getText().toString();
+//        String reason = txtReason.getText().toString();
+//        TeacherAppointmentBL appointment = new TeacherAppointmentBL(id,course,date,time,lecturer,reason);
+//        db.update(appointment);
 
         Toast.makeText(getApplicationContext(), "Record Updated" , Toast.LENGTH_SHORT).show();
     }
     public void DeleteSchedule(View view) {
-        String id = AppointmentID.getText().toString();
-        TeacherAppointmentBL appointment = new TeacherAppointmentBL(id);
-        db.delete(appointment);
+//        String id = AppointmentID.getText().toString();
+//        TeacherAppointmentBL appointment = new TeacherAppointmentBL(id);
+//        db.delete(appointment);
 
 
         Toast.makeText(getApplicationContext(), "Record Deleted", Toast.LENGTH_SHORT).show();

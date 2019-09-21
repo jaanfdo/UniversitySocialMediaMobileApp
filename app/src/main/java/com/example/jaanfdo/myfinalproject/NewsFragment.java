@@ -1,6 +1,7 @@
 package com.example.jaanfdo.myfinalproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,11 +12,22 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.jaanfdo.myfinalproject.BusinessClass.EventsBL;
 import com.example.jaanfdo.myfinalproject.BusinessClass.NewsBL;
 import com.example.jaanfdo.myfinalproject.CustomAdapter.CustomListAdapter_News;
 import com.example.jaanfdo.myfinalproject.Database.NewsDB;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -25,17 +37,19 @@ import java.util.ArrayList;
 
 public class NewsFragment extends Fragment {
     NewsDB db;
+    ListView lv;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_news_fragment, container, false);
         db = new NewsDB(this.getContext());
 
-        ArrayList detail = getListData();
-        if(detail.size() > 0) {
-            ListView lv = (ListView) view.findViewById(R.id.newslistview);
-            lv.setAdapter(new ListviewContactAdapter2(getActivity(), detail));
-        }
+        //ArrayList detail =
+        ListData();
+//        if(detail.size() > 0) {
+             lv = (ListView) view.findViewById(R.id.newslistview);
+//            lv.setAdapter(new ListviewContactAdapter2(getActivity(), detail));
+//        }
 
         return view;
     }
@@ -58,6 +72,51 @@ public class NewsFragment extends Fragment {
 
         return results;
     }
+
+    public void ListData(){
+        final ArrayList<NewsBL> results = new ArrayList<NewsBL>();
+        String URL = "http://192.168.1.3:1234/AndroidPHP/server3.php?Action=viewNews";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            //JSONObject jsonObject = new JSONObject(response);
+                            System.out.println("response : " + response);
+                                JSONArray dataArray = new JSONArray(response);
+                                for (int i = 0; i < dataArray.length(); i++) {
+                                    JSONObject dataobj = dataArray.getJSONObject(i);
+                                    NewsBL newsData = new NewsBL();
+
+                                    newsData.setId(dataobj.getString("id"));
+                                    newsData.setNews(dataobj.getString("news"));
+                                    newsData.setDate(dataobj.getString("date"));
+                                    newsData.setTime(dataobj.getString("time"));
+                                    newsData.setOwner(dataobj.getString("owner"));
+                                    results.add(newsData);
+                                }
+
+                                lv.setAdapter(new ListviewContactAdapter2(getActivity(), results));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+//        // request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this.getContext());
+        requestQueue.add(stringRequest);
+
+        //return results;
+    }
+
+
 }
 
 class ListviewContactAdapter2 extends BaseAdapter {

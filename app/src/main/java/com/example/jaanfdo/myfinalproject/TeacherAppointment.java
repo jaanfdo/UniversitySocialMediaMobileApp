@@ -10,11 +10,24 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.jaanfdo.myfinalproject.BusinessClass.ScheduleBL;
 import com.example.jaanfdo.myfinalproject.BusinessClass.TeacherAppointmentBL;
 import com.example.jaanfdo.myfinalproject.CustomAdapter.CustomListAdapter_Appointment;
+import com.example.jaanfdo.myfinalproject.CustomAdapter.CustomListAdapter_Schedule;
 import com.example.jaanfdo.myfinalproject.Database.AppointmentDB;
 import com.example.jaanfdo.myfinalproject.Database.ScheduleDB;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -25,22 +38,23 @@ public class TeacherAppointment extends AppCompatActivity {
     //ArrayAdapter adapter;
     //ListView lv;
     AppointmentDB db;
-
+    ListView lv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_appointment);
 
-        db = new AppointmentDB(this);
+        //db = new AppointmentDB(this);
 
         if(getSupportActionBar()!= null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        ArrayList detail = getListData();
-        final ListView lv = (ListView) findViewById(R.id.teacherappointmentlistview);
-        lv.setAdapter(new CustomListAdapter_Appointment(this, detail));
+        //ArrayList detail = getListData();
+
+         lv = (ListView) findViewById(R.id.teacherappointmentlistview);
+        ListData();
 
         button = (Button) findViewById(R.id.btnAddTeacherAppointment);
     }
@@ -63,6 +77,58 @@ public class TeacherAppointment extends AppCompatActivity {
             c.moveToNext();
         }
         return array_list;
+    }
+
+    public void ListData(){
+        final ArrayList<TeacherAppointmentBL> results = new ArrayList<TeacherAppointmentBL>();
+        String URL = "http://192.168.1.3:1234/AndroidPHP/server3.php?Action=viewAppointment";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            System.out.println("Response : " + response);
+                            //JSONObject jsonObject = new JSONObject(response);
+                            //System.out.println("List : " + jsonObject);
+
+                            JSONArray dataArray = new JSONArray(response);
+                            for (int i = 0; i < dataArray.length(); i++) {
+                                //System.out.println("JSONObject : " + dataArray);
+
+                                JSONObject dataobj = dataArray.getJSONObject(i);
+                                //System.out.println("JSONObject 2 : " + dataobj);
+
+                                TeacherAppointmentBL detail = new TeacherAppointmentBL();
+                                detail.setId(dataobj.getString("id"));
+                                detail.setCourse(dataobj.getString("course"));
+                                detail.setLecturer(dataobj.getString("lecturer"));
+                                detail.setDate(dataobj.getString("date"));
+                                detail.setTime(dataobj.getString("time"));
+                                detail.setReason(dataobj.getString("reason"));
+                                detail.setUser(dataobj.getString("owner"));
+
+                                results.add(detail);
+
+                            }
+
+                            System.out.println("ArrayList TeacherAppointmentBL : " + results);
+                            lv.setAdapter(new CustomListAdapter_Appointment(getApplicationContext(), results));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        // request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this.getApplicationContext());
+        requestQueue.add(stringRequest);
     }
 
     @Override

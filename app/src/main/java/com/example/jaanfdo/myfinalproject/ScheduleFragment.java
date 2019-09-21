@@ -11,11 +11,22 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.jaanfdo.myfinalproject.BusinessClass.NewsBL;
 import com.example.jaanfdo.myfinalproject.BusinessClass.ScheduleBL;
 import com.example.jaanfdo.myfinalproject.CustomAdapter.CustomListAdapter_Schedule;
 import com.example.jaanfdo.myfinalproject.Database.ScheduleDB;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -26,16 +37,13 @@ import java.util.ArrayList;
 
 public class ScheduleFragment extends Fragment {
     ScheduleDB db;
-
+    ListView lv;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.activity_schedule_fragment, container, false);
-
-        ArrayList detail = getListData();
-        final ListView lv = (ListView) view.findViewById(R.id.schedulelistview);
-        lv.setAdapter(new ListviewContactAdapter3(getActivity(), detail));
-
+        lv = (ListView) view.findViewById(R.id.schedulelistview);
+        ListData();
         return view;
     }
 
@@ -61,6 +69,61 @@ public class ScheduleFragment extends Fragment {
         }
 
         return results;
+    }
+
+
+    public void ListData(){
+        final ArrayList<ScheduleBL> results = new ArrayList<ScheduleBL>();
+        String URL = "http://192.168.1.3:1234/AndroidPHP/server3.php?Action=viewSchedule";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            System.out.println("Response : " + response);
+                            //JSONObject jsonObject = new JSONObject(response);
+                            //System.out.println("List : " + jsonObject);
+
+                                JSONArray dataArray = new JSONArray(response);
+                                for (int i = 0; i < dataArray.length(); i++) {
+                                    //System.out.println("JSONObject : " + dataArray);
+
+                                    JSONObject dataobj = dataArray.getJSONObject(i);
+                                    //System.out.println("JSONObject 2 : " + dataobj);
+
+                                    ScheduleBL detail = new ScheduleBL();
+
+                                    detail.setId(dataobj.getString("id"));
+                                    detail.setCourse(dataobj.getString("course"));
+                                    detail.setSubject(dataobj.getString("subjects"));
+                                    detail.setDate(dataobj.getString("date"));
+                                    detail.setTime(dataobj.getString("time"));
+                                    detail.setClassfloor(dataobj.getString("class_floor"));
+                                    detail.setClassno(dataobj.getString("class_no"));
+                                    detail.setLecname(dataobj.getString("lecturer"));
+
+                                    results.add(detail);
+
+                                }
+
+                            System.out.println("ArrayList ScheduleBL : " + results);
+                            lv.setAdapter(new ListviewContactAdapter3(getActivity(), results));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        // request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this.getContext());
+        requestQueue.add(stringRequest);
     }
 
 }
